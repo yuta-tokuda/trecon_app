@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: tokudayuuta
+  password: tokudayuuta
+  timeout: 5000
+
+development:
+  <<: *default
+  database: useful_note_development
+
+staging:
+  <<: *default
+  database: useful_note_staging
+
+production:
+  <<: *default
+  database: useful_note_pro
