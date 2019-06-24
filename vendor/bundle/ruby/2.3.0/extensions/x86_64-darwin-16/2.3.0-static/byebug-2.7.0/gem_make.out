@@ -1,0 +1,19 @@
+current directory: /Users/tokudayuuta/useful_note/vendor/bundle/ruby/2.3.0/gems/byebug-2.7.0/ext/byebug
+/Users/tokudayuuta/.rbenv/versions/2.3.3/bin/ruby -r ./siteconf20190624-99234-3w2es5.rb extconf.rb
+creating Makefile
+
+current directory: /Users/tokudayuuta/useful_note/vendor/bundle/ruby/2.3.0/gems/byebug-2.7.0/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /Users/tokudayuuta/useful_note/vendor/bundle/ruby/2.3.0/gems/byebug-2.7.0/ext/byebug
+make "DESTDIR="
+compiling locker.c
+compiling byebug.c
+compiling context.c
+compiling breakpoint.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+current directory: /Users/tokudayuuta/useful_note/vendor/bundle/ruby/2.3.0/gems/byebug-2.7.0/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.bundle ./.gem.20190624-99234-knnqqr/byebug
