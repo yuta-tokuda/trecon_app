@@ -1,0 +1,38 @@
+$root_name: '/useful_note';
+
+@font-face {
+  font-family: 'Migu DS Regular';
+  src: font-url('migu-2ds-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.container_div {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 1250px;
+}
+
+body {
+  font-size: 13px;
+  color: #222;
+  font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  font-weight: normal;
+  margin: 0;
+}
+
+.flash-span {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+// float
+.float-left { float: left; }
+
+.float-right { float: right; }
+
+.left   { text-align:left;   }
+.center { text-align:center; }
+.right  { text-align:right;  }

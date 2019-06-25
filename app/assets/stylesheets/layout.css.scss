@@ -1,0 +1,23 @@
+div.header {
+  width: 1440px;
+  height: 60px;
+  background-color: #dedede;
+
+  div.layout-title {
+
+    a {
+      width: 180px;
+      height: 40px;
+      float: left;
+      padding: 10px;
+      background-color: black;
+      text-align: center;
+      display: block;
+      font-size: 30px;
+      font-family: 'Verdana';
+      color: white;
+      text-decoration: none;
+      cursor: pointer
+    }
+  }
+}
