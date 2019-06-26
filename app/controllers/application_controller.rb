@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     return if user_signed_in?
+
     flash[:error] = 'ログインしてください。'
-    redirect_to(request.referrer || root_path)
+    redirect_to(request.referer || root_path)
   end
 end

@@ -4,7 +4,7 @@ module DeviseHelper
 
     html = ''
     resource.errors.full_messages.each do |errmsg|
-      html += <<-EOF
+      html += <<-SQL
       <div class="error_alert alert-danger flash-span" role="alert">
         <button type="button" class="close" data-dismiss="alert">
           <span aria-hidden="true">&times;</span>
@@ -12,9 +12,9 @@ module DeviseHelper
         </button>
         #{ errmsg }
       </div>
-      EOF
+      SQL
     end
-    html.html_safe
+    safe_join(html)
   end
 
   def devise_error_messages?

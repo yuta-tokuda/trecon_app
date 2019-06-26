@@ -3,7 +3,7 @@ div.header
     div.layout-title
       = link_to t('view.title'), root_path
     - if user_signed_in?
-      /= render 'layouts/my_menu_header'
+      = link_to t('view.header.logout'), destroy_user_session_path, method: 'delete', class: 'login'
     - else
       = link_to t('view.header.login'), new_user_session_url, class: 'login'
 
