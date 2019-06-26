@@ -1,0 +1,21 @@
+div.login-div
+  div.login-form
+    p.title ログイン
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = f.email_field :email, class: 'form', placeholder: 'E-Mail'
+
+      = f.password_field :password, class: 'form', placeholder: 'PassWord'
+
+      - if devise_mapping.rememberable?
+        br
+          = f.check_box :remember_me
+          = f.label :remember_me
+
+      = f.submit 'ログイン', class: 'submit'
+
+    .mt15
+      = link_to 'アカウント作成はこちら >', new_registration_path(resource_name), class: 'link'
+    /.mt15
+      /= link_to 'パスワードを忘れた場合はこちら >', new_password_path(resource_name), class: 'link'
+
+= stylesheet_link_tag 'devise'
