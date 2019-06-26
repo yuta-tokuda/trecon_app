@@ -6,8 +6,8 @@ div.header {
   div.layout-title {
 
     a {
-      width: 180px;
-      height: 40px;
+      width: 200px;
+      height: 60px;
       float: left;
       padding: 10px;
       background-color: black;
@@ -19,5 +19,20 @@ div.header {
       text-decoration: none;
       cursor: pointer
     }
+  }
+
+  .login,
+  .logout {
+    width: 130px;
+    float: right;
+    text-align: center;
+    text-decoration: none;
+    list-style: none;
+    position: relative;
+    font-size: 20px;
+    padding-top: 15px;
+    color: #222;
+    font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+    font-weight: bold;
   }
 }

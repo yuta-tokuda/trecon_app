@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        email: メールアドレス
+        encrypted_password: パスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: 次回から自動的にログイン
+        name_first: '姓'
+        name_last: '名'
+        name_first_kana: '姓カナ'
+        name_last_kana: '名カナ'
+        prefecture_name: '出身地'
+        birthday: '誕生日'
+        specialty_field: '得意分野'
+        want_place: '創りたい場'
+        want_learn: '学びたいこと'
+        goal: '目標'
+        hobby: '趣味'
+        my_boom: 'ハマってること'
+        history: '経歴[今までの経緯]'
+        image: 'アイコン写真'
+        name: '名前'
+        name_kana: '名前カナ'
+        industry_type: '業種'

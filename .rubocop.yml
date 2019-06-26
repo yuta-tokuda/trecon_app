@@ -111,6 +111,9 @@ ClassLength:
 EndOfLine:
   Enabled: false
 
+Naming/VariableName:
+  EnforcedStyle: snake_case
+
 AllCops:
   Exclude:
     - vendor/bundle/**/*
@@ -132,3 +135,4 @@ AllCops:
     - Rakefile
     - config/environment.rb
     - config/boot.rb
+    - config/initializers/*
