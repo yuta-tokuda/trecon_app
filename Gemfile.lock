@@ -259,7 +259,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  actionview
   active_decorator
   activesupport
   annotate
@@ -279,7 +278,6 @@ DEPENDENCIES
   pry-byebug
   rails (= 5.2.1)
   rails_12factor
-  railties
   rake
   redcarpet (~> 2.3.0)
   rmagick
