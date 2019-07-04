@@ -1,6 +1,6 @@
 ---
 ja:
-  application_name: Useful-Note
+  application_name: Trecon-App
   activerecord:
     errors:
       messages:
@@ -10,7 +10,7 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     note_preview: プレビュー
   view:
-    title: Useful-Note
+    title: Trecon-App
     header:
       logout: "ログアウト"
       login: "ログイン"
