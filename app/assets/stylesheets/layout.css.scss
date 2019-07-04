@@ -36,3 +36,88 @@ div.header {
     font-weight: bold;
   }
 }
+
+/*ヘッダー右上ドロップリスト*/
+.side-menu-tab {
+  width: 130px;
+  height: 60px;
+  float: right;
+  padding-left: 15px;
+  margin-bottom: -10px;
+
+  /*chrome用*/
+  padding-left: 15px;
+  -webkit-padding-start: 0;
+  /*firefox用*/
+  margin-bottom: -10px;
+  -moz-padding-start: 0;
+}
+.side-menu-tab li {
+  width: 130px;;
+  height: 60px;
+  float: left;
+  text-align: center;
+  list-style: none;
+  position: relative;
+  font-size: 17px;
+}
+
+.side-menu-tab li ul{
+  list-style: none;
+  position: absolute;
+  z-index: 9999;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.sub-menu-main-li { font-weight: bold; padding-top: 20px; }
+
+.side-menu-tab .sub-menu-main-li:hover { background-color: #A4A4A4; }
+
+.side-menu-tab > li:hover > ul > li:hover > a { background: #dedede; color: #FA5882;}
+
+.side-menu-tab li:hover > ul > li {
+  overflow: visible;
+  width: 130px;
+  height: 60px;
+}
+
+.side-menu-tab li ul { display: none; }
+
+.side-menu-tab li:hover ul { display: block; }
+
+.side-menu-tab li ul li a {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 60px;
+  font-size: 17px;
+  padding-top: 20px;
+  text-align: left;
+  padding-left: 10px;
+  color: #222;
+  font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  font-weight: bold;
+}
+
+.sub-menu-sub-li {
+  background-color: white;
+  border-radius: 3px;
+  position: relative;
+  border: 1px solid black;
+}
+
+.sub-menu-sub-li:after {
+  border: 10px solid transparent;
+  border-bottom-color: white;
+  border-top-width: 0;
+  top: -10px;
+  content: "";
+  display: block;
+  left: 30px;
+  position: absolute;
+  width: 0;
+  margin-left: 20px;
+}
