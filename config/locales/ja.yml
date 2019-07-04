@@ -12,8 +12,10 @@ ja:
   view:
     title: Trecon-App
     header:
-      logout: "ログアウト"
-      login: "ログイン"
+      logout: ログアウト
+      login: ログイン
+      my_menu: マイメニュー
+      profile: プロフィール
     new: 作成
     edit: 編集
     update: 更新
