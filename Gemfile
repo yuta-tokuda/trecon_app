@@ -8,6 +8,8 @@ gem 'uglifier'
 gem 'devise'
 gem 'rake'
 gem 'activesupport'
+gem 'actionview'
+gem 'railties'
 
 gem 'jquery-rails'
 gem 'jbuilder'
