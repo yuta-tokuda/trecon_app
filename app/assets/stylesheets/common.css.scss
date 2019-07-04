@@ -30,9 +30,16 @@ body {
 
 // float
 .float-left { float: left; }
-
 .float-right { float: right; }
 
 .left   { text-align:left;   }
 .center { text-align:center; }
 .right  { text-align:right;  }
+
+// フォームの必須マーク
+#form-required {
+  background-color: #FA5858;
+  color: #fff;
+  padding: 2px;
+  font-size: 12px;
+}

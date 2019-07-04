@@ -24,6 +24,7 @@ ja:
     index: 一覧
     add_favorite: お気に入り追加
     release_favorite: お気に入り解除
+    profile: プロフィール
   date:
     abbr_day_names:
     - 日

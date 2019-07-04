@@ -136,3 +136,5 @@ AllCops:
     - config/environment.rb
     - config/boot.rb
     - config/initializers/*
+    # deviseの都合上対象外
+    - app/helpers/devise_helper.rb
