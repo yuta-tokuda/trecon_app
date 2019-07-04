@@ -1,0 +1,21 @@
+= render 'common/form_errors', target: @user
+
+div.form-title
+  span.under_border= "#{ t('view.profile') }#{ t('view.edit') }"
+
+= form_for(@user, url: profile_url) do |f|
+  div.profile-edit-form
+    table.profile-edit-table
+      th
+        span.font-bold = t('activerecord.attributes.user.name_first')
+        = render 'common/form_required_view'
+      td = f.text_field :name_first
+
+      th
+        span.font-bold = t('activerecord.attributes.user.name_last')
+        = render 'common/form_required_view'
+      td = f.text_field :name_last
+
+    = submit_tag t('view.update'), class: 'submit-tag-design float-right'
+
+= stylesheet_link_tag 'profiles/edit'

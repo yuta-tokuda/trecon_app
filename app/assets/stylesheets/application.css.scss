@@ -13,7 +13,10 @@
  *= require_tree .
  *= require_self
  *= require bootstrap-docs.min
+ *= require button
  *= require common
+ *= require font
+ *= require margin_padding
  *= require lazybox
  */
  @import "bootstrap-sprockets";

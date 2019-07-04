@@ -1,0 +1,24 @@
+div.profile-edit-form{
+  width: 800px;
+}
+
+table.profile-edit-table {
+  width: 800px;
+  font-size: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  th {
+    width: 150px;
+    text-align: left;
+    border: 1px solid #A4A4A4;
+    background-color: #dedede;
+    padding: 5px;
+  }
+
+  td {
+    width: 250px;
+    border: 1px solid #A4A4A4;
+    padding: 5px;
+  }
+}

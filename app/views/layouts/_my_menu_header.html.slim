@@ -3,6 +3,6 @@ ul.side-menu-tab
     = t('view.header.my_menu')
     ul.sub-menu-sub-li
       li
-        = link_to t('view.header.profile'), root_path
+        = link_to t('view.header.profile'), edit_profile_url(current_user)
       li
         = link_to t('view.header.logout'), destroy_user_session_path, method: 'delete'

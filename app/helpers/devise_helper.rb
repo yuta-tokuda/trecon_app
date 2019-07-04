@@ -3,18 +3,18 @@ module DeviseHelper
     return '' if resource.errors.empty?
 
     html = ''
-    resource.errors.full_messages.each do |errmsg|
+
+    # エラーメッセージ用のHTMLを生成
+    resource.errors.full_messages.each_with_index do |msg, i|
+      add_class = i.to_i.zero? ? 'mt10' : ''
       html += <<-SQL
-      <div class="error_alert alert-danger flash-span" role="alert">
-        <button type="button" class="close" data-dismiss="alert">
-          <span aria-hidden="true">&times;</span>
-          <span class="sr-only">close</span>
-        </button>
-        #{ errmsg }
-      </div>
+        <div class="error_field alert alert-danger #{ add_class }" role="alert">
+          <span class="error_msg">#{ msg }</span>
+        </div>
       SQL
     end
-    safe_join(html)
+
+    html.html_safe
   end
 
   def devise_error_messages?

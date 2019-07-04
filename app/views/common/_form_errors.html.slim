@@ -1,0 +1,10 @@
+- target ||= nil
+- return unless target
+
+- if target.errors.any?
+  = content_tag(:div, class: 'alert alert-danger mt10 pa10') do
+    h5.mt3.pl5
+      = "#{ target.errors.count }件のエラーがあります"
+
+    - target.errors.full_messages.each do |msg|
+      = ("#{ msg }<br>").html_safe
