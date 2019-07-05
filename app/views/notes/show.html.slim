@@ -8,6 +8,6 @@ div.form-title
 
 div.note-content-markdown.mb20
   div.content
-    = markdown(@note.content).html_safe
+    = markdown(@note.content)
     - if current_user == @note.user
       = link_to t('view.edit'), edit_note_url(@note), class: 'note-edit-btn float-right'

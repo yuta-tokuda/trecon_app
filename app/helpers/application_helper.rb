@@ -6,20 +6,23 @@ module ApplicationHelper
   end
 
   def markdown(text)
-    html_render = HTMLwithCoderay.new(filter_html: true, hard_wrap: true)
     options = {
-      autolink: true,
-      space_after_headers: true,
-      no_intra_emphasis: true,
-      fenced_code_blocks: true,
-      tables: true,
-      hard_wrap: true,
-      xhtml: true,
-      lax_html_blocks: true,
-      strikethrough: true
+        hard_wrap: true,
+        no_intra_emphasis: true
     }
-    markdown = Redcarpet::Markdown.new(html_render, options)
-    markdown.render(text)
+
+    extensions = {
+        autolink: true,
+        fenced_code_blocks: true,
+        lax_spacing: true,
+        no_intra_emphasis: true,
+        strikethrough: true,
+        superscript: true,
+        tables: true
+    }
+    renderer = Redcarpet::Render::HTML.new(options)
+    @markdown = Redcarpet::Markdown.new(renderer, extensions)
+    @markdown.render(text).html_safe
   end
 
   # ページングセレクト
