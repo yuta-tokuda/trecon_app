@@ -1,0 +1,29 @@
+table.note-list {
+  border-spacing: 1px;
+  font-size: 11px;
+  background-color: #e7e7e7;
+  width: 100%;
+  max-width: 100%;
+
+  th, td {
+    padding:5px;
+    line-height:1.5;
+  }
+
+  th {
+    background: #f5f5f5;
+    color: #666;
+    border:1px solid #fff;
+    text-transform: uppercase;
+  }
+
+  td {
+    background: #f9f9f9;
+    border-top: 1px solid #fff;
+    color: #848484;
+  }
+
+  .favorite-note { width: 30px; }
+  .user-name { width: 90px; }
+  .created-at { width: 100px; }
+}

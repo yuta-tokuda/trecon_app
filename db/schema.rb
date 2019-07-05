@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_24_293844) do
+ActiveRecord::Schema.define(version: 2019_07_05_129304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorite_notes", id: :serial, force: :cascade do |t|
+    t.integer "note_id", null: false, comment: "ノートID"
+    t.integer "user_id", null: false, comment: "ユーザーID"
+    t.index ["note_id"], name: "index_favorite_notes_on_note_id"
+    t.index ["user_id"], name: "index_favorite_notes_on_user_id"
+  end
+
+  create_table "notes", id: :serial, force: :cascade do |t|
+    t.string "title", null: false, comment: "タイトル"
+    t.string "content", null: false, comment: "内容"
+    t.integer "created_by_user_id", comment: "登録者"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false

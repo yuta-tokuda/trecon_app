@@ -5,11 +5,10 @@ class User < ApplicationRecord
   validates :name_first, presence: true
   validates :name_last, presence: true
 
+  has_many :notes, dependent: :destroy
+  has_many :favorite_notes, dependent: :destroy
+
   def full_name
     "#{ name_first } #{ name_last }"
-  end
-
-  def name_present?
-    name_first.present? && name_last.present?
   end
 end

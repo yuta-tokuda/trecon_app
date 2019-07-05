@@ -1,0 +1,30 @@
+- url = @note.new_record? ? notes_url : note_url
+- submit_name = @note.new_record? ? t('view.new') : t('view.update')
+
+div.float-left
+  = form_for(@note, url: url) do |f|
+   div.float-left
+    table.note-form
+      tr
+        th
+          .float-left = t('activerecord.attributes.note.title')
+          = render 'common/form_required_view'
+        td = f.text_field :title, class: 'title-form'
+      tr
+        th
+          .float-left = t('activerecord.attributes.note.content')
+          = render 'common/form_required_view'
+          br
+          div.note-preview-btn.mt5 = t('activerecord.note_preview')
+        td = f.text_area :content, class: 'content-form'
+
+    div.float-right
+      = submit_tag submit_name, class: 'submit-tag-design mb10 mr5 float-left'
+      - unless @note.new_record?
+        = link_to t('view.destroy'), note_url(@note), class: 'form-delete-btn mb10 float-left', method: :delete, data: { confirm: t('helpers.delete_confirm') }
+
+  // プレビュー表示
+  #preview-div
+
+div.note-description_text
+  = render 'description_text'

@@ -1,0 +1,42 @@
+div.form-title
+  span.under_border = "#{ t('view.note') }#{ t('view.index') }"
+
+p 検索機能は後ほど実装しましょう。。。。。
+
+div.index-search-result.mt20
+  .float-left
+    = link_to "＋#{ t('view.new') }", new_note_url, class: 'create-btn'
+
+  .float-right
+    p.float-left.fs25.mr3.count = @notes.size
+    p.float-left.mt10.mr3 件中
+    p.float-left.fs25.mr3.count = "#{ @notes.limit_value * @notes.offset_value / @notes.limit_value + 1 }"
+    p.float-left.mt10.mr3 = '件～'
+    p.float-left.fs25.mr3.count = "#{ @notes.limit_value * @notes.offset_value / @notes.limit_value + @notes.length }"
+    p.float-left.mt10.mr3 = '件表示'
+    / 検索条件付与してから表示するかを考える
+    / = select_tag :per_page, options_for_select(per_pages_for_select, params[:per_page]), class: 'float-left per-page-select'
+    / p.float-left.mt10.mr3 = '件'
+
+table.note-list
+  thead
+    tr
+      th
+      th = t('activerecord.attributes.note.title')
+      th = t('activerecord.attributes.note.created_by_user_id')
+      th = t('activerecord.attributes.note.created_at')
+
+  tbody
+    - @notes.each do |note|
+      tr
+        td.center.favorite-note
+          - if note.favorite_note?(current_user.id)
+            #favorite-star
+        td = link_to note.title, note_url(note)
+        td.user-name
+          = note.user.full_name
+        td.created-at
+          = note.created_at.strftime('%Y/%m/%d %H:%M')
+
+.center.pt10
+  = paginate @notes

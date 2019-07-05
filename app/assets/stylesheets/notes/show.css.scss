@@ -1,0 +1,54 @@
+div.note-content-markdown {
+  max-width: 100%;
+  margin-top: 20px;
+
+  div.content { display: inline-block; }
+
+  .note-edit-btn {
+    display: block;
+    color: #FFFFFF;
+    padding: 6px 10px;
+    font-size: 14px;
+    background-color: #58ACFA;
+  }
+
+  .note-edit-btn:hover {
+    color: #FFF;
+    text-decoration: none;
+    background: #0174DF;
+  }
+}
+
+// お気に入り登録ボタン
+.add-favorite-note-btn {
+  display: block;
+  color: #FFFFFF;
+  padding: 6px 10px;
+  font-size: 14px;
+  background-color: #FAAC58;
+  width: 120px;
+  cursor: pointer
+}
+
+.add-favorite-note-btn:hover {
+  color: #FFF;
+  text-decoration: none;
+  background: #FE9A2E;
+}
+
+// お気に入り解除ボタン
+.release-favorite-note-btn {
+  display: block;
+  color: #FFFFFF;
+  padding: 6px 10px;
+  font-size: 14px;
+  background-color: #BDBDBD;
+  width: 120px;
+  cursor: pointer
+}
+
+.release-favorite-note-btn:hover {
+  color: #FFF;
+  text-decoration: none;
+  background: #6E6E6E;
+}

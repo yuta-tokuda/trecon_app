@@ -16,6 +16,7 @@ ja:
       login: ログイン
       my_menu: マイメニュー
       profile: プロフィール
+      note: ノート
     new: 作成
     edit: 編集
     update: 更新
@@ -25,6 +26,7 @@ ja:
     add_favorite: お気に入り追加
     release_favorite: お気に入り解除
     profile: プロフィール
+    note: ノート
   date:
     abbr_day_names:
     - 日
