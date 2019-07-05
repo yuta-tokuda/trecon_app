@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   def index
-    @notes = Note.all.page(params[:page])
+    @notes = Note.all.order(created_at: :DESC).page(params[:page])
   end
 
   def new
