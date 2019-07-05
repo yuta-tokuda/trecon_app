@@ -3,6 +3,12 @@ div.header {
   height: 60px;
   background-color: #dedede;
 
+  div.layout-menu {
+    width: 725px;
+    height: 60px;
+    float: left;
+  }
+
   div.layout-title {
 
     a {
@@ -17,7 +23,8 @@ div.header {
       font-family: 'Verdana';
       color: white;
       text-decoration: none;
-      cursor: pointer
+      cursor: pointer;
+      margin-right: 10px;
     }
   }
 
@@ -41,7 +48,6 @@ div.header {
 .side-menu-tab {
   width: 130px;
   height: 60px;
-  float: right;
   padding-left: 15px;
   margin-bottom: -10px;
 

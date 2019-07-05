@@ -9,3 +9,18 @@
 
 //font-weight
 .font-bold { font-weight: bold }
+
+// 文字サイズ
+.fs12 { font-size: 12px; }
+.fs20 { font-size: 20px; }
+.fs25 { font-size: 25px; }
+
+// pタグのマージンを0にする
+p.non_margin { margin: 0 }
+
+
+// マークダウン説明文タイトル文字
+.note-description-border {
+  border-bottom: solid 3px #87CEFA;
+  font-weight: bold;
+}

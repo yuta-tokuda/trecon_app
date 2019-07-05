@@ -2,6 +2,19 @@ div.header
   div.container_div
     div.layout-title
       = link_to t('view.title'), root_path
+
+    div.layout-menu
+      - if user_signed_in?
+        ul.side-menu-tab.float-left
+          li.sub-menu-main-li
+            = t('view.header.note')
+            ul.sub-menu-sub-li
+              li
+                = link_to t('view.index'), notes_path
+              li
+                = link_to t('view.new'), new_note_url
+
+
     - if user_signed_in?
       = render 'layouts/my_menu_header'
     - else

@@ -1,0 +1,50 @@
+table.note-form {
+  font-size: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  th {
+    width: 100px;
+    text-align: left;
+    border: 1px solid #A4A4A4;
+    background-color: #dedede;
+    padding: 5px;
+  }
+
+  td {
+    border: 1px solid #A4A4A4;
+    padding: 5px;
+  }
+
+  .title-form {
+    width: 500px;
+  }
+
+  .content-form {
+    width: 500px;
+    height: 400px;
+    resize: vertical;
+  }
+}
+
+div.note-description_text {
+  max-width: 560px;
+  float: left;
+  margin-left: 40px;
+}
+
+.note-preview-btn {
+  display: block;
+  color: #FFFFFF;
+  padding: 6px 10px;
+  font-size: 13px;
+  background-color: #FAAC58;
+  cursor: pointer
+}
+
+.note-preview-btn:hover {
+  color: #FFF;
+  text-decoration: none;
+  background: #FF8000;
+  cursor: pointer
+}
