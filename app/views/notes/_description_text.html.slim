@@ -1,6 +1,7 @@
 h4.fs20 Markdownについて
 
-p.mb20.fs12 ググればたくさん出て来ますが、割と使いそうな記法を下記に書いておきます！
+p.mb1o.fs12 ググればたくさん出て来ますが、割と使いそうな記法を下記に書いておきます！
+p.mb20.fs12 = 'htmlタグ使えるのでこっちの方が自由度が高そう(改行を<br>でする等ができる)'
 
 // コード挿入
 h4.note-description-border ソースコードを挿入する
@@ -9,7 +10,7 @@ p.fs12.non_margin ```
 p.fs12.non_margin = "a = 1"
 p.fs12 ```
 p 結果)
-p = markdown("```\r\na = 1'").html_safe
+p = markdown("```\r\na = 1'")
 
 // 見出し
 h4.mt20.note-description-border 見出しをつける
@@ -17,37 +18,45 @@ p 例)
 p.fs12.non_margin #### これはH4タグです
 p.fs12 ###### これはH6タグです
 p 結果)
-p = markdown("#### これはH4タグです").html_safe
-p = markdown("###### これはH6タグです").html_safe
+p = markdown("#### これはH4タグです")
+p = markdown("###### これはH6タグです")
 
+// 文字色変更
+h4.mt20.note-description-border 文字色を変える
+p 例)
+p.fs12.non_margin = '<font color="Orange">オレンジ</font>'
+p.fs12 = '<font color="Blue">青</font>'
+p 結果)
+p = markdown("<font color='Orange'>オレンジ</font>")
+p = markdown("<font color='Blue'>青</font>")
 
 // 打ち消し
 h4.mt20.note-description-border 打ち消し線を入れる
 p 例)
 p.fs12 ~~打ち消し~~
 p 結果)
-p = markdown("~~打ち消し~~").html_safe
+p = markdown("~~打ち消し~~")
 
 // 太文字
 h4.mt20.note-description-border 太文字にする
 p 例)
 p.fs12 = "**太字**"
 p 結果)
-p = markdown("**太字**").html_safe
+p = markdown("**太字**")
 
 // 引用
 h4.mt20.note-description-border 目立たせる
 p 例)
 p.fs12 = "> これは引用箇所です。"
 p 結果)
-p = markdown("> これは引用箇所です。").html_safe
+p = markdown("> これは引用箇所です。")
 
 // リンク
 h4.mt20.note-description-border リンクを載せる
 p 例)
 p.fs12 = "[Yahoo!Japan](http://www.yahoo.co.jp/)"
 p 結果)
-p = markdown("[Yahoo!Japan](http://www.yahoo.co.jp/)").html_safe
+p = markdown("[Yahoo!Japan](http://www.yahoo.co.jp/)")
 
 // 画像貼り付け
 h4.mt20.note-description-border 画像を貼る
@@ -55,4 +64,4 @@ p 例)
 p.fs12.non-marge = "![ダミー画像](画像のURL)"
 p.fs12 = "![ダミー画像](http://placehold.it/100)"
 p 結果)
-p = markdown("![ダミー画像](http://placehold.it/100)").html_safe
+p = markdown("![ダミー画像](http://placehold.it/100)")
