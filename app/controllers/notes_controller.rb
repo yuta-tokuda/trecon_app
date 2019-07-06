@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   def index
-    @notes = Note.all.order(created_at: :DESC).page(params[:page])
+    @notes = search_result.page(params[:page])
   end
 
   def new
@@ -87,5 +87,14 @@ class NotesController < ApplicationController
 
     flash[:error] = '編集は登録者のみ可能です。'
     redirect_to action: :show, id: @note.id
+  end
+
+  def search_result
+    notes = Note.all
+    notes = notes.my_notes(current_user.id) if ActiveRecord::Type::Boolean.new.cast(params[:my_note_flag])
+    notes = notes.where(id: current_user.favorite_notes.ids) if ActiveRecord::Type::Boolean.new.cast(params[:favorite_note_flag])
+    @query = notes.ransack(params[:q])
+    ret = @query.result.order(created_at: :DESC)
+    ret
   end
 end

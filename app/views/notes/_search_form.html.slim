@@ -1,0 +1,8 @@
+p 検索機能は後ほど実装しましょう。。。。。
+
+= search_form_for @query, method: :post do |f|
+  = hidden_field_tag :my_note_flag, params[:my_note_flag]
+  = hidden_field_tag :favorite_note_flag, params[:favorite_note_flag]
+
+  // ひとまず非表示
+  = f.submit id: 'note_search_submit', class: 'hidden'

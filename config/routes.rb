@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :notes do
     collection do
+      match :index, via: %i[get post]
+      match 'create_new', to: 'notes#create', via: 'post'
       get :preview
       get :add_favorite
       get :release_favorite
