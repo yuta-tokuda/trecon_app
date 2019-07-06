@@ -1,11 +1,19 @@
 div.form-title
   span.under_border = "#{ t('view.note') }#{ t('view.index') }"
 
-p 検索機能は後ほど実装しましょう。。。。。
+= render 'search_form'
 
 div.index-search-result.mt20
   .float-left
-    = link_to "＋#{ t('view.new') }", new_note_url, class: 'create-btn'
+    = link_to "＋#{ t('view.new') }", new_note_url, class: 'create-btn mr10'
+
+  .float-left
+    = check_box_tag('note[my_note_flag]', '', ActiveRecord::Type::Boolean.new.cast(params[:my_note_flag]))
+    label.mt10.ml5 for='note_my_note_flag' Myノートのみ
+
+  .float-left.ml10
+    = check_box_tag('note[favorite_note_flag]', '', ActiveRecord::Type::Boolean.new.cast(params[:favorite_note_flag]))
+    label.mt10.ml5 for='note_favorite_note_flag' お気に入りのみ
 
   .float-right
     p.float-left.fs25.mr3.count = @notes.size
@@ -40,3 +48,5 @@ table.note-list
 
 .center.pt10
   = paginate @notes
+
+= javascript_include_tag 'notes/list'

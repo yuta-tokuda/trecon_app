@@ -43,3 +43,5 @@ gem 'lazybox'
 gem 'coffee-rails'
 
 gem 'thin'
+
+gem 'ransack'

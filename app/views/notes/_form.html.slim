@@ -1,4 +1,4 @@
-- url = @note.new_record? ? notes_url : note_url
+- url = @note.new_record? ? create_new_notes_url : note_url
 - submit_name = @note.new_record? ? t('view.new') : t('view.update')
 
 div.float-left
@@ -28,3 +28,5 @@ div.float-left
 
 div.note-description_text
   = render 'description_text'
+
+= javascript_include_tag 'notes/form'
