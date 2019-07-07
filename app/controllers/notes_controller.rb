@@ -1,4 +1,6 @@
 class NotesController < ApplicationController
+  before_action :user_not_authorized
+
   def index
     @notes = search_result.page(params[:page])
   end
@@ -42,6 +44,7 @@ class NotesController < ApplicationController
 
   def show
     @note = Note.find(params[:id])
+    viewable_not_authorized
   end
 
   # 内容のプレビュー
@@ -79,7 +82,7 @@ class NotesController < ApplicationController
   private
 
   def permit_params
-    params.require(:note).permit(:title, :content)
+    params.require(:note).permit(:title, :content, :public_flag)
   end
 
   def only_current_user
@@ -89,10 +92,17 @@ class NotesController < ApplicationController
     redirect_to action: :show, id: @note.id
   end
 
+  def viewable_not_authorized
+    return if @note.viewable_note?(current_user.id)
+
+    flash[:error] = '閲覧不可のノートです'
+    redirect_to action: :index
+  end
+
   def search_result
-    notes = Note.all
+    notes = Note.current_viewable_notes(current_user.id)
     notes = notes.my_notes(current_user.id) if ActiveRecord::Type::Boolean.new.cast(params[:my_note_flag])
-    notes = notes.where(id: current_user.favorite_notes.ids) if ActiveRecord::Type::Boolean.new.cast(params[:favorite_note_flag])
+    notes = notes.where(id: current_user.favorite_notes.map(&:note_id)) if ActiveRecord::Type::Boolean.new.cast(params[:favorite_note_flag])
     @query = notes.ransack(params[:q])
     ret = @query.result.order(created_at: :DESC)
     ret
