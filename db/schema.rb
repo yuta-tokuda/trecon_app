@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_05_129304) do
+ActiveRecord::Schema.define(version: 2019_07_06_123844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_07_05_129304) do
     t.integer "created_by_user_id", comment: "登録者"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "public_flag", default: true, null: false, comment: "公開フラグ"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
