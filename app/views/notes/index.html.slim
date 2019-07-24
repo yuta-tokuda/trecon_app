@@ -1,11 +1,11 @@
-div.form-title
+div.form-title.mb10
   span.under_border = "#{ t('view.note') }#{ t('view.index') }"
 
 = render 'search_form'
 
 div.index-search-result.mt20
   .float-left
-    = link_to "＋#{ t('view.new') }", new_note_url, class: 'create-btn mr10'
+    = link_to t('view.new'), new_note_url, class: 'btn btn-success mr10', style: 'padding: 5px 7px;'
 
   .float-left
     = check_box_tag('note[my_note_flag]', '', ActiveRecord::Type::Boolean.new.cast(params[:my_note_flag]))

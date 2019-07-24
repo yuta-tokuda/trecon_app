@@ -29,4 +29,11 @@ module ApplicationHelper
   def per_pages_for_select
     [%w[50 50], %w[100 100], %w[150 150], %w[200 200]]
   end
+
+  # ユーザー名/ユーザーidの配列
+  def select_for_users
+    User.all
+        .order(:name_first)
+        .map { |user| [user.full_name, user.id] }
+  end
 end
