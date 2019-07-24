@@ -16,7 +16,7 @@ div.index-search-result.mt20
     label.mt10.ml5 for='note_favorite_note_flag' お気に入りのみ
 
   .float-right
-    p.float-left.fs25.mr3.count = @notes.size
+    p.float-left.fs25.mr3.count = @notes.total_count
     p.float-left.mt10.mr3 件中
     p.float-left.fs25.mr3.count = "#{ @notes.limit_value * @notes.offset_value / @notes.limit_value + 1 }"
     p.float-left.mt10.mr3 = '件～'
