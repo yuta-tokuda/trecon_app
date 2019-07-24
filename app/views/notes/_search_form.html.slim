@@ -1,8 +1,12 @@
-p 検索機能は後ほど実装しましょう。。。。。
-
 = search_form_for @query, method: :post do |f|
   = hidden_field_tag :my_note_flag, params[:my_note_flag]
   = hidden_field_tag :favorite_note_flag, params[:favorite_note_flag]
 
+  = f.text_field :title_cont, placeholder: 'タイトル', class: 'mr10'
+
+  = f.text_field :content_cont, placeholder: '内容', class: 'mr10'
+
+  = f.select :created_by_user_id_eq, select_for_users, { include_blank: true }, { class: 'mr20', style: 'height: 26px;' }
+
   // ひとまず非表示
-  = f.submit id: 'note_search_submit', class: 'hidden'
+  = f.submit id: 'note_search_submit', class: 'btn btn-primary'
