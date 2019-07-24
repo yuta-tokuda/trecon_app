@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
+
+  def paging(models, per = 10)
+    Kaminari.paginate_array(models).page(params[:page]).per(per)
+  end
 end

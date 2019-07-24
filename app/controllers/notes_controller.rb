@@ -2,7 +2,7 @@ class NotesController < ApplicationController
   before_action :user_not_authorized
 
   def index
-    @notes = search_result.page(params[:page])
+    @notes = paging(search_result, (params[:per_page] || 15))
   end
 
   def new
