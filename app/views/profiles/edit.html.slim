@@ -3,7 +3,7 @@
 div.form-title
   span.under_border= "#{ t('view.profile') }#{ t('view.edit') }"
 
-= form_for(@user, url: profile_url) do |f|
+= form_with model: @user, url: profile_url do |f|
   div.profile-edit-form
     table.profile-edit-table
       th

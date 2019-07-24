@@ -2,7 +2,7 @@
 - submit_name = @note.new_record? ? t('view.new') : t('view.update')
 
 div.float-left
-  = form_for(@note, url: url) do |f|
+  = form_with model: @note, url: url do |f|
    div.float-left
     table.note-form
       tr

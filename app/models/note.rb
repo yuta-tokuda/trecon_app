@@ -11,7 +11,7 @@ class Note < ApplicationRecord
   end
 
   def viewable_note?(user_id)
-    Note.current_viewable_notes(user_id).find_by(id: self.id).present?
+    Note.current_viewable_notes(user_id).find_by(id: id).present?
   end
 
   def self.current_viewable_notes(user_id)
