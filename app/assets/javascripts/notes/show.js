@@ -1,0 +1,3 @@
+$(function() {
+  jQuery('#toc').toc();
+});
