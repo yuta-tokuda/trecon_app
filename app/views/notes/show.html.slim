@@ -6,7 +6,7 @@ div.form-title style='width: 1000px;'
 - else
   = link_to t('view.add_favorite'), add_favorite_notes_path(note_id: @note.id), class: 'add-favorite-note-btn mt5'
 
-div.note-content-markdown.mb20 style='max-width: 90%;'
+div.note-content-markdown.mb20
   div.content
     = markdown(@note.content)
     - if current_user == @note.user
