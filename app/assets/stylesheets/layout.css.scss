@@ -2,6 +2,8 @@ div.header {
   width: 1440px;
   height: 60px;
   background-color: #dedede;
+  position: fixed;
+  top: 0;
 
   div.layout-menu {
     width: 725px;

@@ -15,3 +15,4 @@
 // require_tree .
 //= require common
 //= require lazybox
+//= require toc.min

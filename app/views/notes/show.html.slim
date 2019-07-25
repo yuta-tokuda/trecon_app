@@ -1,4 +1,4 @@
-div.form-title
+div.form-title style='width: 1000px;'
   span.under_border = @note.title
 
 - if current_user.favorite_notes.find_by(note_id: @note.id)
@@ -11,3 +11,7 @@ div.note-content-markdown.mb20
     = markdown(@note.content)
     - if current_user == @note.user
       = link_to t('view.edit'), edit_note_url(@note), class: 'btn btn-info float-right'
+
+div#toc
+
+= javascript_include_tag 'notes/show'
