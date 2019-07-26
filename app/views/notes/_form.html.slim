@@ -10,7 +10,7 @@ div.float-left
           .float-left = t('activerecord.attributes.note.public_flag')
           = render 'common/form_required_view'
         td
-          .float-left.mr10 = f.check_box(:public_flag)
+          .float-left.mr10 = f.check_box :public_flag, id: 'note_public_flag'
           label.non-margin.float-left for='note_public_flag' 公開する
       tr
         th
