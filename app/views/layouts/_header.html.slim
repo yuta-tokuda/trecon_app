@@ -13,7 +13,11 @@ div.header
                 = link_to t('view.index'), notes_path
               li
                 = link_to t('view.new'), new_note_url
-
+        div.notify
+          i.bell.far.fa-bell#notify-bell
+            div#balloon
+              div.comment 実装中。。。
+          div.badge 0
 
     - if user_signed_in?
       = render 'layouts/my_menu_header'

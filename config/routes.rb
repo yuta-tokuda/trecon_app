@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root to: 'top#index'
 
   resources :profiles, only: %i[edit update]
-
   resources :notes do
     collection do
       match :index, via: %i[get post]
@@ -13,4 +12,5 @@ Rails.application.routes.draw do
       get :release_favorite
     end
   end
+  resource :user_note_comment, only: %i[create update destroy]
 end

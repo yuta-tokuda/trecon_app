@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    attributes:
+      user_note_comment:
+        editor_id: 編集者
+        reply_user_id: コメント投稿者
+        note_id: ノート
+        content: コメント内容
+        created_at: 作成日時
+        updated_at: 更新日時

@@ -1,0 +1,11 @@
+- submit_name = comment.new_record? ? t('view.new') : t('view.update')
+
+= form_with(model: comment, url: user_note_comment_path, local: true) do |f|
+
+  = hidden_field_tag :note_id, note.id
+
+  = hidden_field_tag :comment_id, comment.id
+
+  = f.text_area :content, class: 'form-control'
+
+  = f.submit submit_name, class: 'btn btn-success float-right mt5'
