@@ -6,11 +6,20 @@ div.form-title style='width: 1000px;'
 - else
   = link_to t('view.add_favorite'), add_favorite_notes_path(note_id: @note.id), class: 'add-favorite-note-btn mt5'
 
+div.comment-count
+  = link_to '#comments' do
+    i.far.fa-comment
+    = @note.comments.count
+
 div.note-content-markdown.mb20
   div.content
     = markdown(@note.content)
     - if current_user == @note.user
       = link_to t('view.edit'), edit_note_url(@note), class: 'btn btn-info float-right'
+
+div.comments
+  = render partial: 'notes/user_note_comments/index', locals: { note: @note }, collection: @comments, as: 'comment'
+  = render 'notes/user_note_comments/form', note: @note, comment: @comment
 
 div#toc
 

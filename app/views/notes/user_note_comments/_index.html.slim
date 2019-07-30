@@ -1,0 +1,19 @@
+div.comment-container
+  div class="#{ note.user.comment_reply_user?(comment) ? 'editor-comment' : 'reply-user-comment' }"
+    div.comment-header
+      div.user-info
+        i.far.fa-user
+        span.user-name
+          = comment.reply_user.full_name
+        span.post-time
+          = comment.created_at.strftime('%Y/%m/%d %H:%M')
+      span.custom-btn
+        - if current_user.comment_reply_user?(comment)
+          .i.far.fa-edit.edit-btn
+            input.comment-id value="#{ comment.id }" type='hidden'
+          = link_to(user_note_comment_path(comment_id: comment.id, note_id: note.id ), method: :delete, data: { confirm: t('helpers.delete_confirm') }) do
+            i.far.fa-trash-alt.delete-btn
+    div.comment class="comment-#{ comment.id }"
+      = simple_format(comment.content)
+    div.edit-comment class="edit-comment-#{ comment.id }"
+      = render 'notes/user_note_comments/form', note: note, comment: comment

@@ -1,0 +1,63 @@
+div.comments {
+  width: 1000px;
+  margin-bottom: 80px;
+
+  textarea {
+    height: 92px;
+  }
+  .comment-header, .comment {
+    margin: 3px 3px 0px 3px;
+  }
+  .comment-container {
+    margin-bottom: 5px;
+  }
+  .editor-comment, .reply-user-comment {
+    border-radius: 8px;
+    overflow: hidden;
+    display: inline-block;
+    padding: 3px;
+  }
+  .editor-comment {
+    background: #dedede;
+    border: 1px solid #dedede;
+  }
+  .reply-user-comment {
+    background: #CCFFCC;
+    border: 1px solid #CCFFCC;
+  }
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .user-name {
+    margin-left: 3px;
+  }
+  .post-time {
+    margin-left: 5px;
+    font-size: 10px;
+  }
+  .custom-btn a, .edit-btn {
+    color: #808080;
+  }
+  .fa-edit {
+    border-right: 1px solid #808080;
+    padding-right: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  .delete-btn {
+    margin-left: 5px;
+  }
+  .comment {
+    word-wrap: break-word;
+  }
+  .comment p {
+    margin-bottom: 0;
+  }
+  .edit-comment {
+    display: none;
+    textarea {
+      width: 992px;
+    }
+  }
+}

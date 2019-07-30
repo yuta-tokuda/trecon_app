@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_06_123844) do
+ActiveRecord::Schema.define(version: 2019_07_11_063822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 2019_07_06_123844) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "public_flag", default: true, null: false, comment: "公開フラグ"
+  end
+
+  create_table "user_note_comments", force: :cascade do |t|
+    t.bigint "editor_id", null: false, comment: "noteを投稿したユーザーID"
+    t.bigint "reply_user_id", null: false, comment: "コメントしたユーザーID"
+    t.bigint "note_id", null: false, comment: "ノートID"
+    t.string "content", null: false, comment: "ノートに対してのコメント内容"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["editor_id"], name: "index_user_note_comments_on_editor_id"
+    t.index ["note_id"], name: "index_user_note_comments_on_note_id"
+    t.index ["reply_user_id"], name: "index_user_note_comments_on_reply_user_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|

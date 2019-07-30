@@ -3,4 +3,9 @@ $(function() {
   $('.alert-success').click(function() {
     $(this).fadeOut();
   });
+
+  // 吹き出しをクリックで表示・非表示にする。
+  $('#notify-bell').click(function() {
+    $('#balloon').toggle();
+  });
 });

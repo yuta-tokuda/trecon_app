@@ -44,6 +44,8 @@ class NotesController < ApplicationController
 
   def show
     @note = Note.find(params[:id])
+    @comment = comments.build
+    comments
     viewable_not_authorized
   end
 
@@ -106,5 +108,9 @@ class NotesController < ApplicationController
     @query = notes.ransack(params[:q])
     ret = @query.result.order(created_at: :DESC)
     ret
+  end
+
+  def comments
+    @comments ||= @note.comments.order(:id)
   end
 end

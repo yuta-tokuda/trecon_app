@@ -1,5 +1,20 @@
+# == Schema Information
+#
+# Table name: notes
+#
+#  id                 :integer          not null, primary key
+#  title              :string           not null
+#  content            :string           not null
+#  created_by_user_id :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  public_flag        :boolean          default(TRUE), not null
+#
+
 class Note < ApplicationRecord
-  belongs_to :user, foreign_key: 'created_by_user_id'
+  belongs_to :user, foreign_key: 'created_by_user_id', inverse_of: :notes
+
+  has_many :comments, dependent: :destroy, class_name: 'UserNoteComment'
 
   validates :title, presence: true
   validates :content, presence: true

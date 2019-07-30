@@ -6,9 +6,72 @@ div.header {
   top: 0;
 
   div.layout-menu {
-    width: 725px;
+    width: 860px;
     height: 60px;
     float: left;
+  }
+
+  div.notify {
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin-top: 16px;
+    i.bell {
+      font-size: 26px;
+      cursor: pointer;
+      #balloon {
+        background-color: white;
+        border-radius: 3px;
+        position: absolute;
+        border: 1px solid black;
+        margin-top: 17px;
+        right: -10px;
+        height: 100px;
+        width: 300px;
+        font-size: 15px;
+        display: none;
+      }
+      #balloon:after {
+        border: 10px solid transparent;
+        border-bottom-color: white;
+        border-top-width: 0;
+        top: -10px;
+        content: "";
+        display: block;
+        right: 10px;
+        position: absolute;
+        width: 0;
+        margin-left: 18px;
+      }
+    }
+    div.badge {
+      position: absolute;
+      top: -3px;
+      left: 20px;
+    }
+  }
+
+  div.new > .badge{
+    animation: pulse 2s;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes pulse {
+    40% {
+      transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+      transform: scale3d(1.3, 1.3, 1.3);
+    }
+
+    55% {
+      transform: scale3d(1, 1, 1);
+    }
+
+    60% {
+      transform: scale3d(1.3, 1.3, 1.3);
+    }
   }
 
   div.layout-title {
