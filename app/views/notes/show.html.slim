@@ -11,6 +11,13 @@ div.comment-count
     i.far.fa-comment
     = @note.comments.count
 
+div.editor-info
+  span.editor-name
+    i.fas.fa-user-edit
+    = @note.user.full_name
+  span.edit-time
+      = @note.created_at.strftime('%Y/%m/%d')
+
 div.note-content-markdown.mb20
   div.content
     = markdown(@note.content)

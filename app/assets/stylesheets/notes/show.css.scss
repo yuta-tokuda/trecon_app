@@ -55,6 +55,20 @@ div.comment-count {
   }
 }
 
+div.editor-info {
+  display: inline-block;
+  margin-left: 24px;
+  .editor-name {
+    margin-left: 9px;
+  }
+  i {
+    margin-right: 3px;
+  }
+  .edit-time {
+    margin-left: 9px;
+  }
+}
+
 #toc {
   top: 200px;
   left: 1200px;
