@@ -1,5 +1,7 @@
 class TopController < ApplicationController
   def index
+    return unless user_signed_in?
+
     notes = viewable_notes.includes(:user, :comments)
                           .group_by { |n| n.updated_at.to_date }
 

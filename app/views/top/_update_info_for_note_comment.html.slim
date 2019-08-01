@@ -2,7 +2,7 @@
   - type = comment.created_at == comment.updated_at ? '投稿' : '更新'
 
   i.fas.fa-user-edit.mr3
-  span = "#{ comment.editor.full_name }さんが"
+  span = "#{ comment.reply_user.full_name }さんが"
   span.font-bold = "コメントを#{ type }"
 
   span.float-right = date_diff_str(comment.updated_at)
