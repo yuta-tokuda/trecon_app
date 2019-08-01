@@ -5,7 +5,7 @@ class TopController < ApplicationController
     notes = viewable_notes.includes(:user, :comments)
                           .group_by { |n| n.updated_at.to_date }
 
-    note_comments = viewable_notes.includes(comments: [:editor])
+    note_comments = viewable_notes.includes(comments: [:reply_user])
                                   .map(&:comments)
                                   .flatten
                                   .group_by { |nc| nc.updated_at.to_date }
