@@ -38,4 +38,18 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.after_initialize do
+    Bullet.enable  = true
+
+    # 以下はN+1問題を発見した時のユーザーへの通知方法
+    Bullet.alert         = false # ブラウザのJavaScriptアラート
+    Bullet.bullet_logger = false # Rails.root/log/bullet.log
+    Bullet.console       = true  # ブラウザの console.log の出力先
+    Bullet.rails_logger  = true  # Railsのログ
+    Bullet.add_footer    = false # 画面の下部に表示
+    # include paths with any of these substrings in the stack trace,
+    # even if they are not in your main app
+    # Bullet.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
+  end
 end
