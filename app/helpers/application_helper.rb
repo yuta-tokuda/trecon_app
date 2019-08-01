@@ -44,7 +44,10 @@ module ApplicationHelper
 
     if current_date == today
       # 現時刻の差分
-      "#{ (Time.zone.now - current_date.to_time).round / (60 * 60) }時間前"
+      time_diff = (Time.zone.now - datetime).round / (60 * 60)
+      min_diff = (Time.zone.now - datetime).round / 60
+
+      time_diff.to_i.zero? ? "#{ min_diff }分前" : "#{ time_diff }時間前"
     else
       # 日付の差分
       "#{ (current_date - today).to_i.abs }日前"
