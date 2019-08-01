@@ -1,0 +1,14 @@
+.upper-row.mb5
+  - type = comment.created_at == comment.updated_at ? '投稿' : '更新'
+
+  i.fas.fa-user-edit.mr3
+  span = "#{ comment.editor.full_name }さんが"
+  span.font-bold = "コメントを#{ type }"
+
+  span.float-right = date_diff_str(comment.updated_at)
+
+.lower-row
+  = link_to note.title, note_path(note), target: '_blank'
+
+  i.far.fa-comment.ml10.mr5
+  span = "#{ note.comments.size }"
