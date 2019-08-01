@@ -5,7 +5,9 @@
     - @update_info.each do |date, info|
       tr
         .update-date
-          .date = "#{ date.strftime('%Y年%m月%d日') }(#{ info.size }件)"
+          .date
+            span.mr5 = date.strftime('%Y年%m月%d日')
+            span = "(#{ info.size }件)"
 
         - info.reverse { |model| model.updated_at }.each do |i|
           tr

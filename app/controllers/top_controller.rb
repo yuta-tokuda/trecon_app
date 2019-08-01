@@ -16,6 +16,6 @@ class TopController < ApplicationController
   private
 
   def viewable_notes
-    @viewable_notes ||= Note.current_viewable_notes(current_user.id)
+    @_viewable_notes ||= Note.current_viewable_notes(current_user.id)
   end
 end

@@ -3,7 +3,7 @@
 
   i.fas.fa-user-edit.mr3
   span = "#{ comment.editor.full_name }さんが"
-  span style='font-weight: bold' = "コメントを#{ type }"
+  span.font-bold = "コメントを#{ type }"
 
   span.float-right = date_diff_str(comment.updated_at)
 

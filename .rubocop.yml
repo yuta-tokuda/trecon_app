@@ -117,6 +117,9 @@ Naming/VariableName:
 Rails/Date:
   Enabled: false
 
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: optional
+
 AllCops:
   Exclude:
     - vendor/bundle/**/*

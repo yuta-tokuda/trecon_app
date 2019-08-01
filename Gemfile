@@ -47,4 +47,4 @@ gem 'thin'
 
 gem 'ransack'
 
-gem 'bullet', :group => :development
+gem 'bullet', group: :development
