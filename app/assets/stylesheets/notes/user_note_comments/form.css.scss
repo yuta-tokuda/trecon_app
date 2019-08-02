@@ -1,0 +1,18 @@
+div.comments {
+
+  textarea {
+    height: 128px;
+    resize: none;
+  }
+
+  .btn {
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+
+  .preview-btn {
+    display: inline-block;
+    color: #FFF;
+    float: right;
+  }
+}

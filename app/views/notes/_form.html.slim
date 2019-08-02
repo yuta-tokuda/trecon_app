@@ -22,8 +22,8 @@ div.float-left
           .float-left = t('activerecord.attributes.note.content')
           = render 'common/form_required_view'
           br
-          div.note-preview-btn.mt5 = t('activerecord.note_preview')
-        td = f.text_area :content, class: 'content-form', id: 'note_content'
+          div.preview-btn.mt5 = t('activerecord.markdown_preview')
+        td = f.text_area :content, class: 'content-form', id: 'markdown_content'
 
     div.float-right
       = submit_tag submit_name, class: 'btn btn-success mb10 mr5 float-left'

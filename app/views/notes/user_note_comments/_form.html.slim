@@ -1,11 +1,15 @@
 - submit_name = comment.new_record? ? t('view.new') : t('view.update')
+- form_id = comment.new_record? ? @comments.last(1)[0].id + 1 : comment.id
 
-= form_with(model: comment, url: user_note_comment_path, local: true) do |f|
+= form_with(model: comment, url: user_note_comment_path, local: true, id: form_id) do |f|
 
   = hidden_field_tag :note_id, note.id
 
   = hidden_field_tag :comment_id, comment.id
 
-  = f.text_area :content, class: 'form-control'
+  = f.text_area :content, class: 'form-control content', placeholder: t('helpers.comments_placeholder')
 
-  = f.submit submit_name, class: 'btn btn-success float-right mt5'
+  = f.submit submit_name, class: 'btn btn-success float-right'
+  div.btn.preview-btn = t('activerecord.markdown_preview')
+
+= javascript_include_tag 'notes/user_note_comments/form'
