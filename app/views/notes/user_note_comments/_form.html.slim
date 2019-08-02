@@ -1,7 +1,6 @@
 - submit_name = comment.new_record? ? t('view.new') : t('view.update')
-- form_id = comment.new_record? ? @comments.last(1)[0].id + 1 : comment.id
 
-= form_with(model: comment, url: user_note_comment_path, local: true, id: form_id) do |f|
+= form_with(model: comment, url: user_note_comment_path, local: true, id: "form_id_#{ comment.id.to_i }") do |f|
 
   = hidden_field_tag :note_id, note.id
 
