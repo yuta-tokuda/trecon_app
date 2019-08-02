@@ -36,4 +36,21 @@ module ApplicationHelper
         .order(:name_first)
         .map { |user| [user.full_name, user.id] }
   end
+
+  # 今日との差分
+  def date_diff_str(datetime)
+    today = Time.zone.today
+    current_date = datetime.to_date
+
+    if current_date == today
+      # 現時刻の差分
+      time_diff = (Time.zone.now - datetime).round / (60 * 60)
+      min_diff = (Time.zone.now - datetime).round / 60
+
+      time_diff.to_i.zero? ? "#{ min_diff }分前" : "#{ time_diff }時間前"
+    else
+      # 日付の差分
+      "#{ (current_date - today).to_i.abs }日前"
+    end
+  end
 end

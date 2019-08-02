@@ -114,6 +114,12 @@ EndOfLine:
 Naming/VariableName:
   EnforcedStyle: snake_case
 
+Rails/Date:
+  Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: optional
+
 AllCops:
   Exclude:
     - vendor/bundle/**/*

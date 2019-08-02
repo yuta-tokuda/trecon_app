@@ -98,6 +98,7 @@ class NotesController < ApplicationController
 
   def search_result
     notes = Note.current_viewable_notes(current_user.id)
+                .includes(:user)
     notes = notes.my_notes(current_user.id) if ActiveRecord::Type::Boolean.new.cast(params[:my_note_flag])
     notes = notes.where(id: current_user.favorite_notes.map(&:note_id)) if ActiveRecord::Type::Boolean.new.cast(params[:favorite_note_flag])
     @query = notes.ransack(params[:q])
@@ -106,6 +107,6 @@ class NotesController < ApplicationController
   end
 
   def comments
-    @comments ||= @note.comments.order(:id)
+    @comments ||= @note.comments.includes(:reply_user).order(:id)
   end
 end

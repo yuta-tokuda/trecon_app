@@ -1,0 +1,41 @@
+#top {
+  .left-content {
+    width: 800px;
+    float: left;
+    margin-right: 50px;
+    padding: 10px 20px;
+
+    p.recent-updates {
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    .update-date {
+      padding: 5px;
+      border-left: solid 7px #5989cf;
+      margin-top: 15px;
+      margin-bottom: 10px;
+
+      .date {
+       font-size: 20px;
+       font-weight: bold;
+      }
+    }
+
+    .update-info {
+      border: 1px solid #ccc;
+      padding: 15px 10px;
+    }
+
+    .lower-row {
+      a {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .right-content {
+    width: 370px;
+    float: left;
+  }
+}
