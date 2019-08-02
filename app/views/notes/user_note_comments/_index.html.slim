@@ -14,6 +14,6 @@ div.comment-container
           = link_to(user_note_comment_path(comment_id: comment.id, note_id: note.id ), method: :delete, data: { confirm: t('helpers.delete_confirm') }) do
             i.far.fa-trash-alt.delete-btn
     div.comment class="comment-#{ comment.id }"
-      = simple_format(comment.content)
+      = markdown(comment.content)
     div.edit-comment class="edit-comment-#{ comment.id }"
       = render 'notes/user_note_comments/form', note: note, comment: comment

@@ -49,11 +49,6 @@ class NotesController < ApplicationController
     viewable_not_authorized
   end
 
-  # 内容のプレビュー
-  def preview
-    @content = params[:content]
-  end
-
   # お気に入り追加
   def add_favorite
     note = Note.find(params[:note_id])

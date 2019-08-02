@@ -1,9 +1,9 @@
 $(function() {
-  $('.note-preview-btn').click(function(){
+  $('.preview-btn').click(function() {
     $.ajax({
-      url: '/notes/preview',
+      url: '/common/preview',
       format: 'js',
-      data: { content: $('#note_content').val() }
+      data: { content: $('#markdown_content').val() }
     });
   });
 });

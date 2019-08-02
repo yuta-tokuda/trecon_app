@@ -8,7 +8,7 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
-    note_preview: プレビュー
+    markdown_preview: プレビュー
   view:
     title: Trecon-App
     header:
@@ -166,6 +166,7 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+    comments_placeholder: コメントを入力してください
   number:
     currency:
       format:
