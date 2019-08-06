@@ -1,14 +1,10 @@
 - submit_name = comment.new_record? ? t('view.new') : t('view.update')
+- submit_type = comment.new_record? ? 'create_comment' : 'update_comment'
+- id = comment.id.to_i
 
-= form_with(model: comment, url: user_note_comment_path, local: true, id: "form_id_#{ comment.id.to_i }") do |f|
+= text_area :content, comment.content, class: 'form-control content', placeholder: t('helpers.comments_placeholder'), id: "content_#{ id }"
 
-  = hidden_field_tag :note_id, note.id
+.btn.btn-success.float-right class="#{ submit_type }" id="comment_submit_#{ id }"
+  = submit_name
 
-  = hidden_field_tag :comment_id, comment.id
-
-  = f.text_area :content, class: 'form-control content', placeholder: t('helpers.comments_placeholder')
-
-  = f.submit submit_name, class: 'btn btn-success float-right'
-  div.btn.preview-btn = t('activerecord.markdown_preview')
-
-= javascript_include_tag 'notes/user_note_comments/form'
+div.btn.preview-btn = t('activerecord.markdown_preview')
