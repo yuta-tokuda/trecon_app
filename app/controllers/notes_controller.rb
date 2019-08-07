@@ -79,7 +79,7 @@ class NotesController < ApplicationController
   private
 
   def permit_params
-    params.require(:note).permit(:title, :content, :public_flag)
+    params.require(:note).permit(:title, :content, :public_flag, :tag_list)
   end
 
   def only_current_user

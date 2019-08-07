@@ -19,6 +19,10 @@ div.float-left
         td = f.text_field :title, class: 'title-form'
       tr
         th
+          .float-left = t('activerecord.attributes.note.tag')
+        td = f.text_field :tag_list, class: 'title-form'
+      tr
+        th
           .float-left = t('activerecord.attributes.note.content')
           = render 'common/form_required_view'
           br

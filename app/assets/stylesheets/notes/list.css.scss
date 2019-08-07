@@ -22,8 +22,14 @@ table.note-list {
     border-top: 1px solid #fff;
     color: #848484;
   }
+  .tag_list {
+    .tag:not(:last-child) {
+      margin-right: 4px;
+    }
+  }
 
   .favorite-note { width: 30px; }
+  .tag_list { width: 110px;}
   .user-name { width: 90px; }
   .created-at { width: 110px; }
 }

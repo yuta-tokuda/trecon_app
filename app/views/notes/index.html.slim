@@ -31,6 +31,7 @@ table.note-list
     tr
       th
       th = t('activerecord.attributes.note.title')
+      th = t('activerecord.attributes.note.tag')
       th = t('activerecord.attributes.note.created_by_user_id')
       th = t('activerecord.attributes.note.created_at')
 
@@ -41,6 +42,8 @@ table.note-list
           - if note.favorite_note?(current_user.id)
             #favorite-star
         td = link_to note.title, note_url(note)
+        td.tag_list
+           = render 'notes/tag_list', tag_list: note.tag_list
         td.user-name
           = note.user.full_name
         td.created-at

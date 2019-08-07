@@ -69,6 +69,14 @@ div.editor-info {
   }
 }
 
+div.tag-list {
+  display: inline-block;
+  margin-left: 24px;
+  .tag {
+    margin-left: 9px;
+  }
+}
+
 #toc {
   top: 200px;
   left: 1200px;
