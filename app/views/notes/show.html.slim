@@ -27,6 +27,8 @@ div.note-content-markdown.mb20
 
 div.comments
   = render partial: 'notes/user_note_comments/index', locals: { note: @note }, collection: @comments, as: 'comment'
+
+div.comment-form
   = render 'notes/user_note_comments/form', note: @note, comment: @comment
 
 div#toc
