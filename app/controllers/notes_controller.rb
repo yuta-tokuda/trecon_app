@@ -109,4 +109,8 @@ class NotesController < ApplicationController
   def comments
     @comments ||= @note.comments.includes(:reply_user).order(:id)
   end
+
+  def note_params
+      params.require(:note).permit(:tag_list)
+  end
 end

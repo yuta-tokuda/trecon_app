@@ -42,7 +42,7 @@ table.note-list
           - if note.favorite_note?(current_user.id)
             #favorite-star
         td = link_to note.title, note_url(note)
-        td.tag_list
+        td.tag-list.trunk8
            = render 'notes/tag_list', tag_list: note.tag_list
         td.user-name
           = note.user.full_name
@@ -52,4 +52,5 @@ table.note-list
 .center.pt10
   = paginate @notes
 
+= javascript_include_tag 'trunk8'
 = javascript_include_tag 'notes/list'
