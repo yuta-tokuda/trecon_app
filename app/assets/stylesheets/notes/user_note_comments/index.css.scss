@@ -1,6 +1,5 @@
 div.comments {
   width: 1000px;
-  margin-bottom: 80px;
 
   .comment-header, .comment {
     margin: 3px 3px 0px 3px;
@@ -33,10 +32,10 @@ div.comments {
     margin-left: 5px;
     font-size: 10px;
   }
-  .custom-btn a, .edit-btn {
+  .custom-btn, .edit-btn {
     color: #808080;
   }
-  .fa-edit {
+  .edit-btn {
     border-right: 1px solid #808080;
     padding-right: 5px;
     margin-left: 5px;
@@ -55,6 +54,22 @@ div.comments {
     display: none;
     textarea {
       width: 992px;
+      height: 128px;
     }
+    .btn {
+      margin-top: 5px;
+      margin-left: 5px;
+    }
+    .preview-btn {
+      float: right;
+    }
+  }
+  .delete-confirm {
+    background: #DDF0D3;
+    border: 1px solid #DDF0D3;
+    border-radius: 8px;
+    width: 116px;
+    padding: 8px;
+    margin-bottom: 8px;
   }
 }

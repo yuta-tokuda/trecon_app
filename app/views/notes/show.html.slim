@@ -1,4 +1,5 @@
 div.form-title style='width: 1000px;'
+  = hidden_field_tag :note_id, @note.id
   span.under_border = @note.title
 
 - if current_user.favorite_notes.find_by(note_id: @note.id)
@@ -26,8 +27,12 @@ div.note-content-markdown.mb20
 
 div.comments
   = render partial: 'notes/user_note_comments/index', locals: { note: @note }, collection: @comments, as: 'comment'
+
+div.comment-form
   = render 'notes/user_note_comments/form', note: @note, comment: @comment
 
 div#toc
 
 = javascript_include_tag 'notes/show'
+= javascript_include_tag 'notes/user_note_comments/form'
+= javascript_include_tag 'notes/user_note_comments/index'
