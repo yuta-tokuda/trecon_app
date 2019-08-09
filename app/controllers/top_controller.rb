@@ -3,7 +3,7 @@ class TopController < ApplicationController
     return unless user_signed_in?
 
     info = viewable_notes.includes(:user, :comments)
-                          .group_by { |n| n.updated_at.to_date }
+                         .group_by { |n| n.updated_at.to_date }
 
     note_comments = viewable_notes.includes(comments: [:reply_user])
                                   .map(&:comments)
