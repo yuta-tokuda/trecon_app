@@ -111,6 +111,6 @@ class NotesController < ApplicationController
   end
 
   def note_params
-      params.require(:note).permit(:tag_list)
+    params.require(:note).permit(:tag_list)
   end
 end

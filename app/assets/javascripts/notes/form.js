@@ -6,4 +6,6 @@ $(function() {
       data: { content: $('#markdown_content').val() }
     });
   });
+
+  $('#note-tags').tagit()
 });

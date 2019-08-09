@@ -20,7 +20,7 @@ div.float-left
       tr
         th
           .float-left = t('activerecord.attributes.note.tag')
-        td = f.text_field :tag_list, class: 'title-form'
+        td = f.text_field :tag_list, class: 'title-form', id: 'note-tags', value: @note.send(:tag_list).to_s
       tr
         th
           .float-left = t('activerecord.attributes.note.content')
