@@ -4,6 +4,7 @@ div.header {
   background-color: #dedede;
   position: fixed;
   top: 0;
+  z-index: 1;
 
   div.layout-menu {
     width: 860px;
