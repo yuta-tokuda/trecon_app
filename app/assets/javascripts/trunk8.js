@@ -9,33 +9,35 @@
  */
 
 (function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(['jquery'], factory);
-    } else if (typeof module === 'object' && module.exports) {
-        factory(require('jquery'));
-    } else {
-        factory(root.jQuery);
-    }
-}(this, function ($) {
-	var methods,
-		utils,
-		SIDES = {
-			/* cen...ter */
-			center: 'center',
-			/* ...left */
-			left: 'left',
-			/* right... */
-			right: 'right'
-		},
-		WIDTH = {
-			auto: 'auto'
-		};
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    factory(require('jquery'));
+  } else {
+    factory(root.jQuery);
+  }
+}
 
-	function trunk8(element) {
-		this.$element = $(element);
-		this.original_text = $.trim(this.$element.html());
-		this.settings = $.extend({}, $.fn.trunk8.defaults);
-	}
+(this, function ($) {
+  var methods,
+	utils,
+	SIDES = {
+    /* cen...ter */
+    center: 'center',
+		/* ...left */
+		left: 'left',
+		/* right... */
+		right: 'right'
+	},
+	WIDTH = {
+		auto: 'auto'
+	};
+
+  function trunk8(element) {
+    this.$element = $(element);
+    this.original_text = $.trim(this.$element.html());
+    this.settings = $.extend({}, $.fn.trunk8.defaults);
+  }
 
 	trunk8.prototype.updateSettings = function (options) {
 		this.settings = $.extend(this.settings, options);
@@ -93,44 +95,44 @@
 		bite = bite.replace(fill, '');
 
 		var biteHelper = function(contentArr, tagInfo) {
-				var retStr = '',
-					content,
-					biteContent,
-					biteLength,
-					nextWord,
-					i;
-				for (i = 0; i < contentArr.length; i++) {
-					content = contentArr[i];
-					biteLength = $.trim(bite).split(' ').length;
-					if ($.trim(bite).length) {
-						if (typeof content === 'string') {
-							if (!/<br\s*\/?>/i.test(content)) {
-								if (biteLength === 1 && $.trim(bite).length <= content.length) {
-									content = bite;
-									// We want the fill to go inside of the last HTML
-									// element if the element is a container.
-									if (tagInfo === 'p' || tagInfo === 'div') {
-										content += fill;
-									}
-									bite = '';
-								} else {
-									bite = bite.replace(content, '');
-								}
-							}
-							retStr += $.trim(content) + ((i === contentArr.length-1 || biteLength <= 1) ? '' : ' ');
-						} else {
+      var retStr = '',
+			content,
+			biteContent,
+			biteLength,
+			nextWord,
+			i;
+      for (i = 0; i < contentArr.length; i++) {
+			content = contentArr[i];
+			biteLength = $.trim(bite).split(' ').length;
+        if ($.trim(bite).length) {
+          if (typeof content === 'string') {
+				    if (!/<br\s*\/?>/i.test(content)) {
+					    if (biteLength === 1 && $.trim(bite).length <= content.length) {
+                content = bite;
+							  // We want the fill to go inside of the last HTML
+							  // element if the element is a container.
+							  if (tagInfo === 'p' || tagInfo === 'div') {
+								  content += fill;
+							  }
+							  bite = '';
+							} else {
+								  bite = bite.replace(content, '');
+							  }
+            }
+					retStr += $.trim(content) + ((i === contentArr.length-1 || biteLength <= 1) ? '' : ' ');
+					} else {
 							biteContent = biteHelper(content.content, content.tag);
 							if (content.after) bite = bite.replace(content.after, '');
-							if (biteContent) {
-								if (!content.after) content.after = ' ';
-								retStr += '<'+content.tag+content.attribs+'>'+biteContent+'</'+content.tag+'>' + content.after;
-							}
+							  if (biteContent) {
+								  if (!content.after) content.after = ' ';
+								  retStr += '<'+content.tag+content.attribs+'>'+biteContent+'</'+content.tag+'>' + content.after;
+							  }
 						}
-					}
-				}
-				return retStr;
-			},
-			htmlResults = biteHelper(htmlObject);
+			  }
+			}
+			return retStr;
+	  },
+		htmlResults = biteHelper(htmlObject);
 
 		// Add fill if doesn't exist. This will place it outside the HTML elements.
 		if (htmlResults.slice(htmlResults.length - fill.length) !== fill) {
