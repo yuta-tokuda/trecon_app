@@ -1,0 +1,4 @@
+div.nested-fields.field.mt5
+  = f.text_field :item, value: f.object.item, autocomplete: 'off', class: 'item-form'
+
+  = link_to_remove_association t('view.destroy'), f

@@ -15,4 +15,11 @@ Rails.application.routes.draw do
       get :release_favorite
     end
   end
+
+  resources :questionnaires do
+    collection do
+      match :index, via: %i[get post]
+      match 'create_new', to: 'questionnaires#create', via: 'post'
+    end
+  end
 end

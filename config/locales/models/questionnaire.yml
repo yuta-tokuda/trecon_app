@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    attributes:
+      questionnaire:
+        title: タイトル
+        created_by_user_id: 作成者
+        items: 項目

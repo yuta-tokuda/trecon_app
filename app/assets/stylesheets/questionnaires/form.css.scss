@@ -1,0 +1,40 @@
+.form-div { width: 750px; }
+
+table.questionnaire-form {
+  font-size: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 100%;
+
+  th {
+    width: 130px;
+    text-align: left;
+    border: 1px solid #A4A4A4;
+    background-color: #dedede;
+    padding: 5px;
+  }
+
+  td {
+    border: 1px solid #A4A4A4;
+    padding: 5px;
+  }
+
+  .title-form {
+    width: 600px;
+  }
+
+  .item-form {
+    width: 500px;
+  }
+
+  .add_fields {
+    font-weight: bold;
+    color: #0000FF;
+  }
+
+  .remove_fields {
+    font-weight: bold;
+    color: #FA5858;
+    margin-left: 10px;
+  }
+}

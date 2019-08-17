@@ -1,0 +1,31 @@
+- url = @questionnaire.new_record? ? create_new_questionnaires_url : questionnaire_url
+- submit_name = @questionnaire.new_record? ? t('view.new') : t('view.update')
+
+.form-div
+  = form_with model: @questionnaire, url: url do |f|
+    table.questionnaire-form
+      tr
+        th
+          .float-left = t('activerecord.attributes.questionnaire.title')
+          = render 'common/form_required_view'
+        td = f.text_field :title, class: 'title-form'
+      tr
+        th
+          .float-left = t('activerecord.attributes.questionnaire.items')
+          = render 'common/form_required_view'
+        td
+          div.links
+            = link_to_add_association '＋追加', f, :items, data: { association_insertion_node: '#items', association_insertion_method: 'append' }
+
+            span.caution-statement.ml20 ＊最低2つは項目が必要です
+
+          div id='items'
+            = f.fields_for :items do |item|
+              = render 'item_fields', f: item
+
+    .float-right
+      = submit_tag submit_name, class: 'btn btn-success float-left'
+      - unless @questionnaire.new_record?
+        = link_to t('view.destroy'), questionnaire_url(@questionnaire), class: 'btn btn-danger ml5 float-left', method: :delete, data: { confirm: t('helpers.delete_confirm') }
+
+= javascript_include_tag 'questionnaires/form'

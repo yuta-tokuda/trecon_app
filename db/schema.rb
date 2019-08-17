@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_11_063822) do
+ActiveRecord::Schema.define(version: 2019_08_17_394855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,16 +31,67 @@ ActiveRecord::Schema.define(version: 2019_07_11_063822) do
     t.boolean "public_flag", default: true, null: false, comment: "公開フラグ"
   end
 
-  create_table "user_note_comments", force: :cascade do |t|
+  create_table "questionnaire_answers", force: :cascade do |t|
+    t.bigint "questionnaire_id", null: false, comment: "アンケート"
+    t.bigint "questionnaire_item_id", null: false, comment: "アンケート項目"
+    t.bigint "answer_user_id", null: false, comment: "回答者"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_user_id"], name: "index_questionnaire_answers_on_answer_user_id"
+    t.index ["questionnaire_id"], name: "index_questionnaire_answers_on_questionnaire_id"
+    t.index ["questionnaire_item_id"], name: "index_questionnaire_answers_on_questionnaire_item_id"
+  end
+
+  create_table "questionnaire_items", force: :cascade do |t|
+    t.bigint "questionnaire_id", null: false, comment: "アンケート"
+    t.string "item", null: false, comment: "項目"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["questionnaire_id"], name: "index_questionnaire_items_on_questionnaire_id"
+  end
+
+  create_table "questionnaires", force: :cascade do |t|
+    t.string "title", null: false, comment: "タイトル"
+    t.integer "created_by_user_id", comment: "作成者"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "taggings", id: :serial, force: :cascade do |t|
+    t.integer "tag_id"
+    t.string "taggable_type"
+    t.integer "taggable_id"
+    t.string "tagger_type"
+    t.integer "tagger_id"
+    t.string "context", limit: 128
+    t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
+  end
+
+  create_table "tags", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "user_note_comments", id: :bigint, default: -> { "nextval('user_comments_id_seq'::regclass)" }, force: :cascade do |t|
     t.bigint "editor_id", null: false, comment: "noteを投稿したユーザーID"
     t.bigint "reply_user_id", null: false, comment: "コメントしたユーザーID"
     t.bigint "note_id", null: false, comment: "ノートID"
-    t.string "content", null: false, comment: "ノートに対してのコメント内容"
+    t.string "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["editor_id"], name: "index_user_note_comments_on_editor_id"
-    t.index ["note_id"], name: "index_user_note_comments_on_note_id"
-    t.index ["reply_user_id"], name: "index_user_note_comments_on_reply_user_id"
+    t.index ["editor_id"], name: "index_user_comments_on_editor_id"
+    t.index ["note_id"], name: "index_user_comments_on_note_id"
+    t.index ["reply_user_id"], name: "index_user_comments_on_reply_user_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|

@@ -16,3 +16,4 @@
 //= require common
 //= require lazybox
 //= require toc.min
+//= require cocoon
