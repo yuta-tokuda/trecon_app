@@ -1,7 +1,9 @@
 class QuestionnairesController < ApplicationController
   before_action :user_not_authorized
 
-  def index; end
+  def index
+    @questionnaires = paging(search_result, (params[:per_page] || 15))
+  end
 
   def new
     @questionnaire = Questionnaire.new
@@ -53,5 +55,13 @@ class QuestionnairesController < ApplicationController
 
     flash[:error] = '編集は作成者のみ可能です。'
     redirect_to action: :index
+  end
+
+  def search_result
+    questionnaires = Questionnaire.includes(:created_user)
+    questionnaires = questionnaires.my_questionnaires(current_user.id) if ActiveRecord::Type::Boolean.new.cast(params[:my_questionnaire_flag])
+    @query = questionnaires.ransack(params[:q])
+    ret = @query.result.order(created_at: :DESC)
+    ret
   end
 end

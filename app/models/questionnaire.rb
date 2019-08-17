@@ -18,4 +18,6 @@ class Questionnaire < ApplicationRecord
 
   validates :created_by_user_id, presence: true
   validates :title, presence: true
+
+  scope :my_questionnaires, ->(user_id) { where(created_by_user_id: user_id) }
 end
