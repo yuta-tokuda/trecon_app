@@ -10,9 +10,8 @@ $(function() {
 });
 
 $(document).on('ready page:load', function() {
-  $('#note-tags').tagit();
-  return {
+  return $('#note-tags').tagit({
     singleField: true,
     availableTags: auto.all_tag_list
-  };
+  });
 });
