@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_11_063822) do
+ActiveRecord::Schema.define(version: 2019_08_16_012521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,20 @@ ActiveRecord::Schema.define(version: 2019_07_11_063822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "public_flag", default: true, null: false, comment: "公開フラグ"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "active_user_id", null: false, comment: "通知を送るユーザー"
+    t.bigint "passive_user_id", comment: "通知を受けるユーザー"
+    t.bigint "note_id", comment: "ノートID"
+    t.bigint "comment_id", comment: "コメントID"
+    t.string "kind", null: false, comment: "noteもしくはcomment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["active_user_id"], name: "index_notifications_on_active_user_id"
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["note_id"], name: "index_notifications_on_note_id"
+    t.index ["passive_user_id"], name: "index_notifications_on_passive_user_id"
   end
 
   create_table "user_note_comments", force: :cascade do |t|

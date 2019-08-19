@@ -13,11 +13,18 @@ div.header
                 = link_to t('view.index'), notes_path
               li
                 = link_to t('view.new'), new_note_url
-        div.notify
+        div.notification
           i.bell.far.fa-bell#notify-bell
             div#balloon
-              div.comment 実装中。。。
-          div.badge 0
+              - if @notifications.present?
+                div.notification-comments
+                  = render partial: 'layouts/notification', collection: @notifications, as: 'notification'
+              - else
+                div.notification-comments
+                  = t('helpers.no_notifications')
+            div.badge
+              = hidden_field_tag 'notification-count', @notifications.count
+              = @notifications.count
 
     - if user_signed_in?
       = render 'layouts/my_menu_header'

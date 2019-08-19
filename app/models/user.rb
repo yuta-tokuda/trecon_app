@@ -32,6 +32,8 @@ class User < ApplicationRecord
   has_many :reply_users, class_name: 'UserNoteComment', foreign_key: 'reply_user_id', inverse_of: :reply_users, dependent: :destroy
   has_many :comments, dependent: :destroy, class_name: 'UserNoteComment'
 
+  scope :other_user_ids, ->(user_id) { where.not(id: user_id).ids }
+
   def full_name
     "#{ name_first } #{ name_last }"
   end

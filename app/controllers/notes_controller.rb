@@ -13,6 +13,7 @@ class NotesController < ApplicationController
     @note = Note.new(permit_params.merge(created_by_user_id: current_user.id))
     @note.save!
     flash[:notice] = 'ノートを登録しました。'
+    create_note_notification if @note.public_flag == true
     redirect_to action: :show, id: @note.id
   rescue ActiveRecord::RecordInvalid
     render :new
@@ -108,5 +109,12 @@ class NotesController < ApplicationController
 
   def comments
     @comments ||= @note.comments.includes(:reply_user).order(:id)
+  end
+
+  def create_note_notification
+    ids = User.other_user_ids(current_user.id)
+    ids.each do |id|
+      @note.notifications.create(active_user_id: current_user.id, passive_user_id: id, note_id: @note.id, kind: 'note')
+    end
   end
 end

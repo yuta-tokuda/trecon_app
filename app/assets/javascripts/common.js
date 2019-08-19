@@ -8,4 +8,8 @@ $(function() {
   $('#notify-bell').click(function() {
     $('#balloon').toggle();
   });
+
+  if ($('#notification-count').val() >= 1) {
+    $('.badge').addClass('new');
+  } 
 });

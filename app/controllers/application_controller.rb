@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :current_user_notification
 
   def user_not_authorized
     return if user_signed_in?
@@ -20,5 +21,9 @@ class ApplicationController < ActionController::Base
 
   def paging(models, per = 10)
     Kaminari.paginate_array(models).page(params[:page]).per(per)
+  end
+
+  def current_user_notification
+    @notifications = Notification.where(passive_user_id: current_user.id) if current_user
   end
 end

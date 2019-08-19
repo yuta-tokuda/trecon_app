@@ -11,9 +11,8 @@ div.header {
     float: left;
   }
 
-  div.notify {
+  div.notification {
     position: relative;
-    display: inline-block;
     float: right;
     margin-top: 16px;
     i.bell {
@@ -26,10 +25,11 @@ div.header {
         border: 1px solid black;
         margin-top: 17px;
         right: -10px;
-        height: 100px;
-        width: 300px;
+        width: 450px;
+        max-height: 428px;
         font-size: 15px;
         display: none;
+        overflow: scroll;
       }
       #balloon:after {
         border: 10px solid transparent;
@@ -46,14 +46,43 @@ div.header {
     }
     div.badge {
       position: absolute;
-      top: -3px;
+      top: -4px;
       left: 20px;
+    }
+    .notification-comments {
+      padding: 4px;
+    }
+    .notification-comment {
+      padding: 4px;
+      margin-bottom: 4px;
+      &:hover {
+        background-color: #E3E3E3;
+        border: 1px solid #E3E3E3;
+        border-radius: 3px;
+        margin-bottom: 2px;
+      }
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+    }
+    .active-user {
+      font-size: 14px;
+      margin-bottom: 4px;
+      .created-time {
+        font-size: 10px;
+      }
+    }
+    .notification-detail {
+      font-size: 12px;
     }
   }
 
-  div.new > .badge{
+  div.new {
     animation: pulse 2s;
     animation-iteration-count: infinite;
+    color: #fff;
+    background-color: #dc3545;
   }
 
   @keyframes pulse {

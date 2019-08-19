@@ -167,6 +167,9 @@ ja:
       submit: 保存する
       update: 更新する
     comments_placeholder: コメントを入力してください
+    no_notifications: 通知はありません。
+    new_comment_notify: さんがコメントしました。
+    new_note_notify: さんがノートを投稿しました。
   number:
     currency:
       format:

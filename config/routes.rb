@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'user_note_comments/create_comment', to: 'user_note_comments#create_comment'
   get 'user_note_comments/update_comment', to: 'user_note_comments#update_comment'
   get 'user_note_comments/destroy_comment', to: 'user_note_comments#destroy_comment'
+  get 'notification', to: 'notifications#confirm'
 
   resources :profiles, only: %i[edit update]
   resources :notes do

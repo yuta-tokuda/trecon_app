@@ -1,0 +1,20 @@
+.notification-comment
+  - if notification.kind == 'comment'
+    = link_to notification_path(id: notification.id, note_id: notification.comment.note.id) do
+      .active-user
+        = notification.active_user.full_name
+        = t('helpers.new_comment_notify')
+        span.created-time
+          = notification.created_at.strftime('%Y/%m/%d %H:%M')
+      .notification-detail
+        = notification.comment.content.truncate(35, omission: '...')
+
+  - elsif notification.kind == 'note'
+    = link_to notification_path(id: notification.id, note_id: notification.note.id) do
+      .active-user
+        = notification.active_user.full_name
+        = t('helpers.new_note_notify')
+        span.created-time
+          = notification.created_at.strftime('%Y/%m/%d %H:%M')
+      .notification-detail
+        = notification.note.title.truncate(35, omission: '...')

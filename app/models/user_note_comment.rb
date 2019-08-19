@@ -12,6 +12,8 @@
 #
 
 class UserNoteComment < ApplicationRecord
+  has_many :notifications, dependent: :destroy, foreign_key: 'comment_id'
+
   belongs_to :editor, class_name: 'User', foreign_key: 'editor_id', inverse_of: :editors
   belongs_to :reply_user, class_name: 'User', foreign_key: 'reply_user_id', inverse_of: :reply_users
   belongs_to :note
