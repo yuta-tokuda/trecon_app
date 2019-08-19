@@ -126,3 +126,8 @@ div.tag-list {
 
   body { margin-left:0; }
 }
+
+// JQueryのオートコンプリート用ヘルプメッセージの非表示
+.ui-helper-hidden-accessible {
+  display: none;
+}
