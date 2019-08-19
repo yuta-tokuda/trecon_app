@@ -7,5 +7,12 @@ $(function() {
     });
   });
 
-  $('#note-tags').tagit()
+});
+
+$(document).on('ready page:load', function() {
+  $('#note-tags').tagit();
+  return {
+    singleField: true,
+    availableTags: auto.all_tag_list
+  };
 });

@@ -7,6 +7,7 @@ class NotesController < ApplicationController
 
   def new
     @note = Note.new
+    @all_tag_list = ActsAsTaggableOn::Tag.all.pluck(:name)
   end
 
   def create
@@ -20,6 +21,7 @@ class NotesController < ApplicationController
 
   def edit
     @note = Note.find(params[:id])
+    @all_tag_list = ActsAsTaggableOn::Tag.all.pluck(:name)
     only_current_user
   end
 

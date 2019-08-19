@@ -21,6 +21,10 @@ div.float-left
         th
           .float-left = t('activerecord.attributes.note.tag')
         td = f.text_field :tag_list, class: 'title-form', id: 'note-tags', value: @note.send(:tag_list).to_s
+        = javascript_tag do
+           |  var auto = { all_tag_list:
+           = raw @all_tag_list
+           |  };
       tr
         th
           .float-left = t('activerecord.attributes.note.content')
