@@ -8,6 +8,7 @@ html
     = csrf_meta_tags
 
     = stylesheet_link_tag    'application', media: 'all'
+    = include_gon
     = javascript_include_tag 'application'
     = render_lazybox
 
@@ -22,5 +23,3 @@ html
             span.glyphicon.glyphicon-info-sign.pr10
             = value.html_safe
         = yield
-        = include_gon
-        = javascript_include_tag "application"
