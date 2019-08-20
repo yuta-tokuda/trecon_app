@@ -24,7 +24,7 @@ table.note-list {
   }
 
   .tag-list {
-    max-width: 170px;
+    max-width: 200px;
     word-wrap: break-word;
     overflow: hidden;
     white-space: nowrap;
@@ -32,6 +32,13 @@ table.note-list {
     .tag {
       width: 45px;
       margin-right: 4px;
+      a {
+        color: #FFFFFF;
+        &:hover {
+          text-decoration: none;
+          color : #ff7043;
+        }
+      }
     }
   }
 

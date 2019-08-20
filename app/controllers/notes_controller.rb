@@ -3,6 +3,9 @@ class NotesController < ApplicationController
 
   def index
     @notes = paging(search_result, (params[:per_page] || 15))
+    if params[:tag_name]
+      @notes = paging(Note.tagged_with("#{ params[:tag_name] }"), 15)
+    end
   end
 
   def new
