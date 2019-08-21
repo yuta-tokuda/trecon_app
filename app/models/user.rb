@@ -29,12 +29,12 @@ class User < ApplicationRecord
   has_many :notes, dependent: :destroy, inverse_of: :notes
   has_many :favorite_notes, dependent: :destroy
   has_many :comments, dependent: :destroy, class_name: 'UserNoteComment'
-  has_many :editors, class_name: 'UserNoteComment', foreign_key: 'editor_id', inverse_of: :editors
-  has_many :reply_users, class_name: 'UserNoteComment', foreign_key: 'reply_user_id', inverse_of: :reply_users
+  has_many :editors, class_name: 'UserNoteComment', foreign_key: 'editor_id', inverse_of: :editors, dependent: :destroy
+  has_many :reply_users, class_name: 'UserNoteComment', foreign_key: 'reply_user_id', inverse_of: :reply_users, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  has_many :active_users, class_name: 'Notification', foreign_key: 'active_user_id', inverse_of: :active_user
-  has_many :passive_users, class_name: 'Notification', foreign_key: 'passive_user_id', inverse_of: :passive_user
-  has_many :passive_notifications, -> { order(created_at: 'DESC') }, class_name: 'Notification', foreign_key: 'passive_user_id', inverse_of: :passive_user
+  has_many :active_users, class_name: 'Notification', foreign_key: 'active_user_id', inverse_of: :active_user, dependent: :destroy
+  has_many :passive_users, class_name: 'Notification', foreign_key: 'passive_user_id', inverse_of: :passive_user, dependent: :destroy
+  has_many :passive_notifications, -> { order(created_at: 'DESC').includes(:active_user, :note, :comment) }, class_name: 'Notification', foreign_key: 'passive_user_id', inverse_of: :passive_user
 
   scope :other_user_ids, ->(user_id) { where.not(id: user_id).ids }
 

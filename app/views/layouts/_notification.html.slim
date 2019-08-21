@@ -1,6 +1,6 @@
 .notification-comment
   - if notification.kind == 'comment'
-    = link_to notification_path(id: notification.id, anchor: "comment-${ notification.comment.id }") do
+    = link_to notification_path(id: notification.id, anchor: "comment-#{ notification.comment.id }") do
       .active-user
         = notification.active_user.full_name
         = t('helpers.new_comment_notify')
