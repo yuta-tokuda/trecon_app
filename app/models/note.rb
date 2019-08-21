@@ -35,11 +35,11 @@ class Note < ApplicationRecord
     non_viewable_note_ids.empty? ? Note.all : Note.where.not(id: non_viewable_note_ids)
   end
 
-  def comment_before_posting
-    comments[-2]
-  end
-
   def created_user?(user_id)
     created_by_user_id == user_id
+  end
+
+  def public_flag_change?
+    public_flag_previous_change[0] == false && public_flag_previous_change[1] == true
   end
 end

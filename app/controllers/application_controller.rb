@@ -24,6 +24,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_notification
-    @notifications = Notification.where(passive_user_id: current_user.id) if current_user
+    @notifications = current_user.passive_notifications.includes(:active_user, :note, :comment) if user_signed_in?
   end
 end

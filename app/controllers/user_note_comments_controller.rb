@@ -3,7 +3,8 @@ class UserNoteCommentsController < ApplicationController
 
   def create_comment
     @note = Note.find(params[:note_id])
-    @comment = comments.new(permit_params)
+    @comment = @note.comments.new(permit_params)
+    @passive_user = User.find(params[:passive_user_id]) if params[:passive_user_id]
     @comment.save
     create_comment_notification
     respond_to do |format|
@@ -14,7 +15,7 @@ class UserNoteCommentsController < ApplicationController
 
   def update_comment
     @note = Note.find(params[:note_id])
-    @comment = comments.find(params[:comment_id])
+    @comment = @note.comments.find(params[:comment_id])
     @comment.update(permit_params)
     respond_to do |format|
       format.html { redirect_to note_path(@note) }
@@ -24,7 +25,7 @@ class UserNoteCommentsController < ApplicationController
 
   def destroy_comment
     @note = Note.find(params[:note_id])
-    comment = comments.find(params[:comment_id])
+    comment = @note.comments.find(params[:comment_id])
     comment.destroy
   end
 
@@ -34,19 +35,11 @@ class UserNoteCommentsController < ApplicationController
     params.permit(:content).merge(reply_user_id: current_user.id, editor_id: @note.created_by_user_id)
   end
 
-  def comments
-    @comments ||= @note.comments
-  end
-
-  def comment_notifications
-    @comment_notifications ||= @comment.notifications
-  end
-
   def create_comment_notification
-    if @note.comment_before_posting.present?
-      comment_notifications.create(active_user_id: current_user.id, passive_user_id: @note.comment_before_posting.reply_user_id, kind: 'comment') if @note.comment_before_posting.reply_user_id != current_user.id
+    if @passive_user
+      @comment.notifications.create(active_user_id: current_user.id, passive_user_id: @passive_user.id, note_id: @note.id, kind: 'comment')
     elsif !@note.created_user?(current_user.id)
-      comment_notifications.create(active_user_id: current_user.id, passive_user_id: @note.created_by_user_id, kind: 'comment')
+      @comment.notifications.create(active_user_id: current_user.id, passive_user_id: @note.created_by_user_id, note_id: @note.id, kind: 'comment')
     end
   end
 end

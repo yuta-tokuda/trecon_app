@@ -22,8 +22,8 @@ div.header
               - else
                 div.notification-comments
                   = t('helpers.no_notifications')
-            div.badge
-              = hidden_field_tag 'notification-count', @notifications.count
+          - if @notifications.present?
+            div.badge.new
               = @notifications.count
 
     - if user_signed_in?

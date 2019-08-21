@@ -32,17 +32,19 @@ div.comments {
     margin-left: 5px;
     font-size: 10px;
   }
-  .custom-btn, .edit-btn {
+  .custom-btn {
     color: #808080;
+    margin-left: 6px;
+    font-size: 16px;
+    cursor: pointer;
   }
   .edit-btn {
     border-right: 1px solid #808080;
-    padding-right: 5px;
+    padding-right: 6px;
     margin-left: 5px;
-    cursor: pointer;
   }
   .delete-btn {
-    margin-left: 5px;
+    margin-left: 6px;
   }
   .comment {
     word-wrap: break-word;

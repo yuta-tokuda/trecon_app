@@ -44,7 +44,7 @@ table.note-list
         td.user-name
           = note.user.full_name
         td.created-at
-          = note.created_at.strftime('%Y/%m/%d %H:%M')
+          = l note.created_at
 
 .center.pt10
   = paginate @notes
