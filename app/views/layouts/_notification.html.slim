@@ -1,20 +1,19 @@
-.notification-comment
-  - if notification.kind == 'comment'
-    = link_to notification_path(id: notification.id, anchor: "comment-#{ notification.comment.id }") do
-      .active-user
-        = notification.active_user.full_name
-        = t('helpers.new_comment_notify')
-        span.created-time
-          = l notification.created_at
-      .notification-detail
-        = markdown(notification.comment.content.truncate(50, omission: '...'))
+- if notification.kind == 'comment'
+  = link_to notification_path(id: notification.id, anchor: "comment-#{ notification.comment.id }"), class: 'notification-comment' do
+    .active-user
+      = notification.active_user.full_name
+      = t('helpers.new_comment_notify')
+      span.created-time
+        = l notification.created_at
+    .notification-detail
+      = markdown(notification.comment.content.truncate(50, omission: '...'))
 
-  - elsif notification.kind == 'note'
-    = link_to notification_path(id: notification.id) do
-      .active-user
-        = notification.active_user.full_name
-        = t('helpers.new_note_notify')
-        span.created-time
-          = l notification.created_at
-      .notification-detail
-        = notification.note.title.truncate(50, omission: '...')
+- elsif notification.kind == 'note'
+  = link_to notification_path(id: notification.id), class: 'notification-comment' do
+    .active-user
+      = notification.active_user.full_name
+      = t('helpers.new_note_notify')
+      span.created-time
+        = l notification.created_at
+    .notification-detail
+      = notification.note.title.truncate(50, omission: '...')

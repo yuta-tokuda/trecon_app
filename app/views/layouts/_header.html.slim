@@ -17,10 +17,10 @@ div.header
           i.bell.far.fa-bell#notify-bell
             div#balloon
               - if @notifications.present?
-                div.notification-comments
+                .notification-comments
                   = render partial: 'layouts/notification', collection: @notifications, as: 'notification'
               - else
-                div.notification-comments
+                .non-notification-comment
                   = t('helpers.no_notifications')
           - if @notifications.present?
             div.badge.new
