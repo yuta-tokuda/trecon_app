@@ -75,6 +75,10 @@ div.tag-list {
 
   .tag {
     margin-left: 9px;
+    &:hover {
+      text-decoration: none;
+      color : #ffb6c1;
+    }
   }
 }
 

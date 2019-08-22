@@ -6,7 +6,7 @@ table.note-list {
   max-width: 100%;
 
   th, td {
-    padding:5px;
+    padding:4px;
     line-height:1.5;
   }
 
@@ -23,21 +23,20 @@ table.note-list {
     color: #848484;
   }
 
-  .title { width: 750px; }
+  .title { width: 700px; }
   .tag-list {
+    max-width: 300px;
     word-wrap: break-word;
-    overflow: hidden;
-    white-space: nowrap;
 
     .tag {
-      width: 45px;
-      margin-right: 4px;
-      a {
-        color: #FFFFFF;
-        &:hover {
-          text-decoration: none;
-          color : #ff7043;
-        }
+      display: inline-block;
+      color: #FFFFFF;
+      margin-right: 2px;
+      margin-bottom: 2px;
+      padding: 2px 8px;
+      &:hover {
+        text-decoration: none;
+        color : #ffb6c1;
       }
     }
   }

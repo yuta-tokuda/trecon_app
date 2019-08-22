@@ -1,3 +1,2 @@
 - tag_list.each do |tag|
-  span.tag.btn-sm.btn-info
-    = link_to tag, notes_path(tag_name: tag)
+    = link_to tag.truncate(10, omission: '...'), notes_path(tag_name: tag), class: 'tag btn-sm btn-info'
