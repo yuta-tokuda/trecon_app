@@ -13,6 +13,14 @@ div.header
                 = link_to t('view.index'), notes_path
               li
                 = link_to t('view.new'), new_note_url
+        ul.side-menu-tab.float-left
+          li.sub-menu-main-li
+            = t('view.header.questionnaire')
+            ul.sub-menu-sub-li
+              li
+                = link_to t('view.index'), questionnaires_path
+              li
+                = link_to t('view.new'), new_questionnaire_url
         div.notify
           i.bell.far.fa-bell#notify-bell
             div#balloon

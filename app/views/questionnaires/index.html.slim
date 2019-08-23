@@ -1,0 +1,41 @@
+div.form-title.mb10
+  span.under_border = "#{ t('view.questionnaire') }#{ t('view.index') }"
+
+= render 'search_form'
+
+div.index-search-result.mt20
+  .float-left
+    = link_to t('view.new'), new_questionnaire_url, class: 'btn btn-success mr10', style: 'padding: 5px 7px;'
+
+  .float-left
+    = check_box_tag('questionnaire[my_questionnaire_flag]', '', ActiveRecord::Type::Boolean.new.cast(params[:my_questionnaire_flag]))
+    label.mt10.ml5 for='questionnaire_my_questionnaire_flag' Myノートのみ
+
+  .float-right
+    p.float-left.fs25.mr3.count = @questionnaires.total_count
+    p.float-left.mt10.mr3 件中
+    p.float-left.fs25.mr3.count = "#{ @questionnaires.limit_value * @questionnaires.offset_value / @questionnaires.limit_value + 1 }"
+    p.float-left.mt10.mr3 = '件～'
+    p.float-left.fs25.mr3.count = "#{ @questionnaires.limit_value * @questionnaires.offset_value / @questionnaires.limit_value + @questionnaires.length }"
+    p.float-left.mt10.mr3 = '件表示'
+
+table.questionnaire-list
+  thead
+    tr
+      th = t('activerecord.attributes.questionnaire.title')
+      th = t('activerecord.attributes.questionnaire.created_by_user_id')
+      th = t('activerecord.attributes.questionnaire.created_at')
+
+  tbody
+    - @questionnaires.each do |questionnaire|
+      tr
+        td = link_to questionnaire.title, questionnaire_url(questionnaire)
+        td.user-name
+          = questionnaire.created_user.full_name
+        td.created-at
+          = questionnaire.created_at.strftime('%Y/%m/%d %H:%M')
+
+.center.pt10
+  = paginate @questionnaires
+
+= javascript_include_tag 'questionnaires/list'

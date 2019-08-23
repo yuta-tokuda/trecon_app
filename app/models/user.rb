@@ -31,6 +31,7 @@ class User < ApplicationRecord
   has_many :editors, class_name: 'UserNoteComment', foreign_key: 'editor_id', inverse_of: :editors, dependent: :destroy
   has_many :reply_users, class_name: 'UserNoteComment', foreign_key: 'reply_user_id', inverse_of: :reply_users, dependent: :destroy
   has_many :comments, dependent: :destroy, class_name: 'UserNoteComment'
+  has_many :questionnaires, dependent: :destroy, inverse_of: :questionnaires
 
   def full_name
     "#{ name_first } #{ name_last }"

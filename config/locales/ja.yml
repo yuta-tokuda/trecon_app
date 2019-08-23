@@ -17,6 +17,7 @@ ja:
       my_menu: マイメニュー
       profile: プロフィール
       note: ノート
+      questionnaire: アンケート
     new: 作成
     edit: 編集
     update: 更新
@@ -27,6 +28,7 @@ ja:
     release_favorite: お気に入り解除
     profile: プロフィール
     note: ノート
+    questionnaire: アンケート
   date:
     abbr_day_names:
     - 日

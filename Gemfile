@@ -48,3 +48,6 @@ gem 'thin'
 gem 'ransack'
 
 gem 'bullet', group: :development
+
+# 1対多のフォーム
+gem 'cocoon'

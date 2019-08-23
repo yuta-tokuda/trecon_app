@@ -1,0 +1,5 @@
+= search_form_for @query, method: :post do |f|
+  = hidden_field_tag :my_questionnaire_flag, params[:my_questionnaire_flag]
+
+  // ひとまず非表示
+  = f.submit id: 'questionnaire_search_submit', class: 'btn btn-primary hidden'
