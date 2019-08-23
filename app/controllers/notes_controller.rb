@@ -106,6 +106,8 @@ class NotesController < ApplicationController
                 .includes(:user, :taggings)
     notes = notes.my_notes(current_user.id) if ActiveRecord::Type::Boolean.new.cast(params[:my_note_flag])
     notes = notes.where(id: current_user.favorite_notes.map(&:note_id)) if ActiveRecord::Type::Boolean.new.cast(params[:favorite_note_flag])
+    #tags = Tagging.where(context: params[:tag_name]) if params[:tag_name]
+    #notes = ActsAsTaggableOn::Tagging.where(taggable_id: notes.ids, context: params[:tag_name]) if params[:tag_name]
     @query = notes.ransack(params[:q])
     ret = @query.result.order(created_at: :DESC)
     ret
