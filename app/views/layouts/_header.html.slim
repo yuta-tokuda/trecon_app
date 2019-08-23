@@ -13,14 +13,14 @@ div.header
                 = link_to t('view.index'), notes_path
               li
                 = link_to t('view.new'), new_note_url
-        div.notification
+        div.notification-container
           i.bell.far.fa-bell#notify-bell
             div#balloon
               - if @notifications.present?
-                .notification-comments
+                .notifications
                   = render partial: 'layouts/notification', collection: @notifications, as: 'notification'
               - else
-                .non-notification-comment
+                .non-notification
                   = t('helpers.no_notifications')
           - if @notifications.present?
             div.badge.new

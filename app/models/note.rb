@@ -40,6 +40,6 @@ class Note < ApplicationRecord
   end
 
   def public_flag_change?
-    public_flag_previous_change[0] == false && public_flag_previous_change[1] == true
+    public_flag_previous_change.present? && public_flag_previous_change[0] == false && public_flag_previous_change[1] == true
   end
 end

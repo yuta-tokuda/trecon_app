@@ -11,7 +11,7 @@ div.header {
     float: left;
   }
 
-  div.notification {
+  div.notification-container {
     position: relative;
     float: right;
     margin-top: 16px;
@@ -25,7 +25,7 @@ div.header {
         border: 1px solid black;
         margin-top: 17px;
         right: -10px;
-        width: 450px;
+        width: 330px;
         max-height: 428px;
         font-size: 15px;
         display: none;
@@ -49,35 +49,29 @@ div.header {
       top: -4px;
       left: 20px;
     }
-    .notification-comments {
+    .notifications {
       margin-bottom: 0px;
     }
-    a.notification-comment {
+    .notification {
       display: block;
       color: #000;
-      padding: 8px;
+      text-decoration: none;
+      padding: 4px;
       &:hover {
         background-color: #E3E3E3;
-        border: 1px solid #E3E3E3;
-        border-radius: 3px;
-        text-decoration: none;
-      }
-    }
-    .active-user {
-      font-size: 14px;
-      padding-bottom: 4px;
-      .created-time {
-        font-size: 10px;
       }
     }
     .notification-detail {
-      font-size: 12px;
-      padding-left: 4px;
-      p {
-        margin-bottom: 0;
-      }
+      font-size: 13px;
+      margin-bottom: 2px;
+      line-height: 150%;
     }
-    .non-notification-comment {
+    .created-time {
+      font-size: 13px;
+      color: #999;
+      padding-left: 4px;
+    }
+    .non-notification {
       padding: 4px;
       cursor: default;
     }

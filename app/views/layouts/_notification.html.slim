@@ -1,19 +1,18 @@
 - if notification.kind == 'comment'
-  = link_to notification_path(id: notification.id, anchor: "comment-#{ notification.comment.id }"), class: 'notification-comment' do
-    .active-user
-      = notification.active_user.full_name
-      = t('helpers.new_comment_notify')
-      span.created-time
-        = l notification.created_at
+  = link_to notification_path(id: notification.id, anchor: "comment-#{ notification.comment.id }"), class: 'notification' do
     .notification-detail
-      = markdown(notification.comment.content.truncate(50, omission: '...'))
+      strong = notification.active_user.full_name
+      | さんがあなたのノート
+      strong 「#{ notification.note.title.truncate(30, omission: '...') }」
+      | にコメントしました。
+    span.created-time
+      = l notification.created_at
 
 - elsif notification.kind == 'note'
-  = link_to notification_path(id: notification.id), class: 'notification-comment' do
-    .active-user
-      = notification.active_user.full_name
-      = t('helpers.new_note_notify')
-      span.created-time
-        = l notification.created_at
+  = link_to notification_path(id: notification.id), class: 'notification' do
     .notification-detail
-      = notification.note.title.truncate(50, omission: '...')
+      strong = notification.active_user.full_name
+      = t('helpers.new_note_notify')
+      strong 「#{ notification.note.title.truncate(35, omission: '...') }」
+    span.created-time
+      = l notification.created_at

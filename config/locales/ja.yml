@@ -169,7 +169,7 @@ ja:
     comments_placeholder: コメントを入力してください
     no_notifications: 通知はありません。
     new_comment_notify: さんがコメントしました。
-    new_note_notify: さんがノートを投稿しました。
+    new_note_notify: さんがノートを公開しました。
   number:
     currency:
       format:
