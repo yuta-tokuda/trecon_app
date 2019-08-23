@@ -1,2 +1,2 @@
 - tag_list.each do |tag|
-    = link_to tag.truncate(10, omission: '...'), notes_path(tag_name: tag, favorite_note_flag: params[:favorite_note_flag], my_note_flag: params[:my_note_flag]), class: 'tag btn-sm btn-info'
+  div.tag.btn-sm.btn-info = tag.truncate(10, omission: '...')

@@ -1,6 +1,7 @@
 = search_form_for @query, method: :post do |f|
   = hidden_field_tag :my_note_flag, params[:my_note_flag]
   = hidden_field_tag :favorite_note_flag, params[:favorite_note_flag]
+  = hidden_field_tag :tag_name, nil
   
   = f.text_field :title_cont, placeholder: 'タイトル', class: 'mr10'
 
