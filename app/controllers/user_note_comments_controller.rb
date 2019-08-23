@@ -4,7 +4,7 @@ class UserNoteCommentsController < ApplicationController
   def create_comment
     @note = Note.find(params[:note_id])
     @comment = @note.comments.new(permit_params)
-    @passive_user = User.find(params[:passive_user_id]) if params[:passive_user_id]
+    @passive_user = User.find_by(id: params[:passive_user_id])
     @comment.save
     create_comment_notification
     respond_to do |format|
