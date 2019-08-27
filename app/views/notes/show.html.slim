@@ -26,6 +26,8 @@ div.note-content-markdown.mb20
       = link_to t('view.edit'), edit_note_url(@note), class: 'btn btn-info float-right'
 
 div.comments
+  - if @unread_comment
+    = hidden_field_tag :unread_comment, @unread_comment.id
   = render partial: 'notes/user_note_comments/index', locals: { note: @note }, collection: @comments, as: 'comment'
 
 div.comment-form

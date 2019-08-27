@@ -31,18 +31,6 @@ div.header {
         display: none;
         overflow: scroll;
       }
-      #balloon:after {
-        border: 10px solid transparent;
-        border-bottom-color: white;
-        border-top-width: 0;
-        top: -10px;
-        content: "";
-        display: block;
-        right: 10px;
-        position: absolute;
-        width: 0;
-        margin-left: 18px;
-      }
     }
     div.badge {
       position: absolute;
@@ -52,7 +40,7 @@ div.header {
     .notifications {
       margin-bottom: 0px;
     }
-    .notification {
+    .comment-notification, .note-notification {
       display: block;
       color: #000;
       text-decoration: none;

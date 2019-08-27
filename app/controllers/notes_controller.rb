@@ -48,6 +48,8 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
     @comment = comments.build
     comments
+    @unread_comment = UserNoteComment.find_by(id: params[:comment_id])
+    destroy_note_notification
     viewable_not_authorized
   end
 
@@ -117,5 +119,10 @@ class NotesController < ApplicationController
     user_ids.each do |user_id|
       @note.notifications.create(active_user_id: current_user.id, passive_user_id: user_id, kind: 'note')
     end
+  end
+
+  def destroy_note_notification
+    note_notification = current_user.passive_notifications.find_by(note_id: @note.id, kind: 'note')
+    note_notification&.destroy
   end
 end

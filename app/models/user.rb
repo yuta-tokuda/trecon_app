@@ -45,4 +45,8 @@ class User < ApplicationRecord
   def comment_reply_user?(comment)
     id == comment.reply_user_id
   end
+
+  def comment_notification_present?
+    passive_notifications.where(kind: 'comment').present?
+  end
 end

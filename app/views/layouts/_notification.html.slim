@@ -1,15 +1,15 @@
 - if notification.kind == 'comment'
-  = link_to notification_path(id: notification.id, anchor: "comment-#{ notification.comment.id }"), class: 'notification' do
+  = link_to notification_path(notification_id: notification.id, anchor: "comment-#{ notification.comment.id }"), class: "comment-notification comment-#{ notification.comment.id }" do
     .notification-detail
       strong = notification.active_user.full_name
-      | さんがあなたのノート
+      | さんが
       strong 「#{ notification.note.title.truncate(30, omission: '...') }」
       | にコメントしました。
     span.created-time
       = l notification.created_at
 
 - elsif notification.kind == 'note'
-  = link_to notification_path(id: notification.id), class: 'notification' do
+  = link_to notification_path(notification_id: notification.id), class: 'note-notification' do
     .notification-detail
       strong = notification.active_user.full_name
       = t('helpers.new_note_notify')
