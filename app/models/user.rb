@@ -49,4 +49,8 @@ class User < ApplicationRecord
   def comment_notification_present?
     passive_notifications.where(kind: 'comment').present?
   end
+
+  def comment_notifications(note)
+    passive_notifications.where(note_id: note.id, kind: 'comment')
+  end
 end

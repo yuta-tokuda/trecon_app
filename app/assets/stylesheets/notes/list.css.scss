@@ -23,6 +23,16 @@ table.note-list {
     color: #848484;
   }
 
+  .unread-info {
+    top: -37px;
+    left: -65px;
+    width: 160px;
+    &:after {
+      bottom: -8px;
+      left: -5px;
+    }
+  }
+
   .favorite-note { width: 30px; }
   .user-name { width: 90px; }
   .created-at { width: 110px; }

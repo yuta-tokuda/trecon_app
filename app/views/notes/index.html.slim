@@ -40,7 +40,14 @@ table.note-list
         td.center.favorite-note
           - if note.favorite_note?(current_user.id)
             #favorite-star
-        td = link_to note.title, note_url(note)
+        td
+          - if notification = current_user.comment_notifications(note).last
+            = link_to notification_path(notification_id: notification, anchor: "comment-#{ notification.comment.id }"), class: 'unread-comment' do
+              = note.title
+            i.fas.fa-exclamation-circle
+          - else
+            = link_to note_url(note) do
+              = note.title
         td.user-name
           = note.user.full_name
         td.created-at
