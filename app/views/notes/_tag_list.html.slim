@@ -1,2 +1,4 @@
-- tag_list.each do |tag|
-  div.tag.btn-sm.btn-info = tag.truncate(10, omission: '...')
+- tag_list.each_with_index do |tag, index|
+  div.tag.btn-sm.btn-info
+    = tag.truncate(10, omission: '...')
+  = hidden_field_tag "tag_full_name_#{ index }", tag

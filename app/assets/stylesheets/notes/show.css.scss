@@ -71,10 +71,11 @@ div.editor-info {
 
 div.tag-list {
   display: inline-block;
-  margin-left: 24px;
+  margin-left: 10px;
 
   .tag {
-    margin-left: 9px;
+    display: inline-block;
+    margin-left: 4px;
     &:hover {
       text-decoration: none;
       color : #ffb6c1;

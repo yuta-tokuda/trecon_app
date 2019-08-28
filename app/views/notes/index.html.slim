@@ -42,7 +42,7 @@ table.note-list
           - if note.favorite_note?(current_user.id)
             #favorite-star
         td.title
-          = link_to note.title.truncate(70, omission: '...'), note_url(note)
+          = link_to note.title.truncate(65, omission: '...'), note_url(note)
         td.tag-list
           = render 'notes/tag_list', tag_list: note.tag_list
         td.user-name
