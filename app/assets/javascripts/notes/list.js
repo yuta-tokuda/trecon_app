@@ -10,11 +10,7 @@ $(function() {
   });
 
   $('.tag').click(function() {
-    if ($(this)[0].textContent.match(/...$/)) {
-      $('#tag_name').val($(this).next().val());
-    } else {
-      $('#tag_name').val($(this)[0].textContent);
-    }
+    $('#tag_name').val($(this).next().val());
     $('#note_search_submit').click();
   });
 });
