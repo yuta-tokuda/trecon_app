@@ -48,7 +48,6 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
     @comment = comments.build
     comments
-    @unread_comment = UserNoteComment.find_by(id: params[:comment_id])
     destroy_note_notification
     viewable_not_authorized
   end

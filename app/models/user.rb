@@ -53,4 +53,8 @@ class User < ApplicationRecord
   def comment_notifications(note)
     passive_notifications.where(note_id: note.id, kind: 'comment')
   end
+
+  def oldest_comment(note)
+    comment_notifications(note).last.comment
+  end
 end

@@ -9,7 +9,7 @@
 
 .lower-row
   - if notification = current_user.comment_notifications(note).last
-    = link_to notification_path(notification_id: notification, unread_comment_id: notification.comment.id, anchor: "comment-#{ notification.comment.id }"), class: 'top-unread-comment', target: '_blank' do
+    = link_to notification_path(notification_id: notification.id, unread_comment_id: current_user.oldest_comment(note).id, note_id: notification.note.id), class: 'top-unread-comment', target: '_blank' do
       = note.title
 
     i.far.fa-comment.ml10.mr5
