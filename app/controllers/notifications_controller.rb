@@ -1,11 +1,11 @@
 class NotificationsController < ApplicationController
   def confirm
-    notification = Notification.find(params[:notification_id])
-    @note = notification.note
-    unread_comment_id = current_user.comment_notifications(@note).last&.comment_id
-    notification.destroy
+    notification = Notification.find_by(id: params[:notification_id])
+    unread_comment = UserNoteComment.find_by(id: params[:unread_comment_id])
+    @note = unread_comment&.note || notification.note
+    notification&.destroy
     destroy_other_notifications
-    redirect_to note_path(@note, comment_id: unread_comment_id)
+    redirect_to note_path(@note, comment_id: unread_comment&.id)
   end
 
   private

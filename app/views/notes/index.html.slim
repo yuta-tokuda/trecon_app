@@ -42,7 +42,7 @@ table.note-list
             #favorite-star
         td
           - if notification = current_user.comment_notifications(note).last
-            = link_to notification_path(notification_id: notification, anchor: "comment-#{ notification.comment.id }"), class: 'unread-comment' do
+            = link_to notification_path(notification_id: notification, unread_comment_id: notification.comment.id, anchor: "comment-#{ notification.comment.id }"), class: 'unread-comment' do
               = note.title
             i.fas.fa-exclamation-circle
           - else

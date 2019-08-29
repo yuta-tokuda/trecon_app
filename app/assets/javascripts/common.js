@@ -9,7 +9,7 @@ $(function() {
     $('#balloon').toggle();
   });
 
-  if ($('.unread-comment').length) {
+  if ($('.unread-comment').length || $('.top-unread-comment').length) {
     $('.fa-exclamation-circle').mouseover(function() {
       $(this).prepend('<div class="unread-info">新しいコメントがあります。</div>');
     });
