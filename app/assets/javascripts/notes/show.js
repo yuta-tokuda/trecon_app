@@ -8,17 +8,15 @@ $(function() {
 
   jQuery('#toc').toc();
 
-  //通知から未読コメントを参照したとき
-  if (location.href.match(/#comment-/)) {
-    var unReadCommentId = location.href.match(/#comment-[0-9]{1,}/)[0].replace('#comment-', '')
+  //コメントのアンカーからidを取得し、未読案内を差し込む。(アンカーがコメントである前提なので他にアンカーを適用させる場合は注意。)
+  if (location.hash) {
+    var unReadCommentId = location.hash.replace('#comment-', '')
     $(`#comment-${ unReadCommentId }`).before(unReadLineHtml);
   }
 
   // １５秒後に未読の案内を消す
   setTimeout(function() {
-    if ($(`.notifications > .comment-${ $('#unread_comment').val() }`)) {
-      $('.unread-line').remove();
-    };
+    $('.unread-line').remove();
   }, 15000);
 });
 
