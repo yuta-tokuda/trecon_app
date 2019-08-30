@@ -1,23 +1,27 @@
 $(function() {
   $(document).on('click', '.preview-btn', function() {
-    var comment_id = $(this).prev().attr('id').replace('comment_submit_', '');
+    var commentId = $(this).prev().attr('id').replace('comment_submit_', '');
     $.ajax({
       url: '/common/preview',
       format: 'js',
-      data: { content: $('#content_' + comment_id)[0].value }
+      data: { content: $('#content_' + commentId)[0].value }
     });
   });
 
   $(document).on('click', '.create_comment', function() {
     var content = $('#content_' + $(this).attr('id').replace('comment_submit_', '')).val();
-    if(content == '') {
+    if ($(this).prev().attr('id') != 'content_0') {
+      var passiveUserId = $(this).prev().attr('id')
+    }
+    if (content == '') {
       alert('コメントを入力してください。');
       return false;
     } else {
       $.ajax({
         url: '/user_note_comments/create_comment',
         data: { note_id: $('#note_id').val(),
-                content: content
+                content: content,
+                passive_user_id: passiveUserId
               },
         dataType: 'json'
       })
@@ -25,6 +29,8 @@ $(function() {
         var html = buildHTML(data);
         $('.comments').append(html);
         $('.content').val('');
+        $('.passive-user-id').remove();
+        $('.reply-cancel-btn').remove();
       })
       .fail(function() {
         alert('エラーが発生しました。');
@@ -33,8 +39,8 @@ $(function() {
   });
 
   $(document).on('click', '.update_comment', function() {
-    var comment_id = $(this).attr('id').replace('comment_submit_', '');
-    var content = $('#content_' + comment_id).val();
+    var commentId = $(this).attr('id').replace('comment_submit_', '');
+    var content = $('#content_' + commentId).val();
     if (content == '') {
       alert('コメントを入力してください。');
       return false;
@@ -43,15 +49,15 @@ $(function() {
         url: '/user_note_comments/update_comment',
         format: 'js',
         data: { note_id: $('#note_id').val(),
-                comment_id: comment_id,
+                comment_id: commentId,
                 content: content
               },
         dataType: 'json'
       })
       .done(function(data) {
-        var new_comment = buildHTML(data);
-        var old_comment = $(`.comment-${ comment_id }`).parent().parent();
-        $(old_comment).replaceWith(new_comment);
+        var newComment = buildHTML(data);
+        var oldComment = $(`.comment-${ commentId }`).parent().parent();
+        $(oldComment).replaceWith(newComment);
       })
       .fail(function() {
         alert('エラーが発生しました。');
@@ -60,19 +66,19 @@ $(function() {
   });
 
   $(document).on('click', '.delete-btn', function() {
-    var comment_id = $(this).prev().prev('.comment_id').attr('value');
+    var commentId = $(this).prev().prev('.comment_id').attr('value');
     if (confirm('削除してもよろしいですか？')) {
       $.ajax({
         url: '/user_note_comments/destroy_comment',
         format: 'js',
         data: { note_id: $('#note_id').val(),
-                comment_id: comment_id
+                comment_id: commentId
               }
       })
       .done(function() {
-        var delete_comment = $(`.comment-${ comment_id }`).parent().parent();
-        var delete_confirm = `<div class='delete-confirm'>削除しました。</div>`
-        $(delete_comment).replaceWith(delete_confirm)
+        var deleteComment = $(`.comment-${ commentId }`).parent().parent();
+        var deleteConfirm = `<div class='delete-confirm'>削除しました。</div>`
+        $(deleteComment).replaceWith(deleteConfirm)
       })
       .fail(function() {
         alert('エラーが発生しました。すでに削除している可能性があります。');
@@ -84,9 +90,9 @@ $(function() {
 });
 
 function buildHTML(data) {
-  var comment_write_user = data.comment_user_name == data.note_edit_user ? 'editor-comment' : 'reply-user-comment'
+  var commentWriteUser = data.comment_user_name == data.note_edit_user ? 'editor-comment' : 'reply-user-comment'
   var html = `<div class="comment-container">
-                <div class=${ comment_write_user }>
+                <div class=${ commentWriteUser }>
                   <div class="comment-header">
                     <div class="user-info">
                       <i class="far fa-user"></i><span class="user-name">${ data.comment_user_name }</span><span class="post-time">${ data.comment_date }</span>

@@ -96,3 +96,35 @@ div.index-search-result {
   width: 15px;
   content:"★";
 }
+
+.fa-exclamation-circle {
+  position: relative;
+  color: #FF2756;
+  font-size: 1.5em;
+  padding-left: 4px;
+}
+
+.unread-info {
+  position: absolute;
+  font-size: 0.688em;
+  color: #F4F4F4;
+  background: #3F3A3D;
+  top: -40px;
+  left: -83px;
+  width: 200px;
+  text-align: center;
+  padding: 8px 4px;
+  border-radius: 4px;
+  &:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -8px;
+    left: -5px;
+    width: 0px;
+    margin: auto;
+    border-style: solid;
+    border-color: #3F3A3D transparent transparent transparent;
+    border-width: 8px 8px 0 8px;
+  }
+}

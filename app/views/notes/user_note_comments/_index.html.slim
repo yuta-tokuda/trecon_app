@@ -1,4 +1,4 @@
-div.comment-container
+div.comment-container id="comment-#{ comment.id }"
   div class="#{ note.user.comment_reply_user?(comment) ? 'editor-comment' : 'reply-user-comment' }"
     div.comment-header
       div.user-info
@@ -6,12 +6,16 @@ div.comment-container
         span.user-name
           = comment.reply_user.full_name
         span.post-time
-          = comment.created_at.strftime('%Y/%m/%d %H:%M')
+          = l comment.created_at
       span.custom-btn
         - if current_user.comment_reply_user?(comment)
           input.comment_id value="#{ comment.id }" type='hidden'
           .i.far.fa-edit.edit-btn
-          div.delete_comment.i.far.fa-trash-alt.delete-btn
+          .delete_comment.i.far.fa-trash-alt.delete-btn
+        - else
+          input value="#{ comment.reply_user.id }" type='hidden'
+          input value="#{ comment.reply_user.full_name }" type='hidden'
+          .fas.fa-reply.reply-btn
     div.comment class="comment-#{ comment.id }"
       = markdown(comment.content)
     div.edit-comment class="edit-comment-#{ comment.id }"

@@ -42,13 +42,18 @@ table.note-list
           - if note.favorite_note?(current_user.id)
             #favorite-star
         td.title
-          = link_to note.title.truncate(65, omission: '...'), note_url(note)
+          - if notification = current_user.comment_notifications(note).last
+            = link_to notification_path(notification_id: notification, unread_comment_id: current_user.oldest_comment(note).id, note_id: note.id), class: 'unread-comment' do
+              = note.title.truncate(65, omission: '...')
+            i.fas.fa-exclamation-circle
+          - else
+            = link_to note.title.truncate(65, omission: '...'), note_url(note)
         td.tag-list
           = render 'notes/tag_list', tag_list: note.tag_list
         td.user-name
           = note.user.full_name
         td.created-at
-          = note.created_at.strftime('%Y/%m/%d %H:%M')
+          = l note.created_at
 
 .center.pt10
   = paginate @notes

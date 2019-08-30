@@ -8,7 +8,15 @@
   span.float-right = date_diff_str(comment.updated_at)
 
 .lower-row
-  = link_to note.title, note_path(note), target: '_blank'
+  - if notification = current_user.comment_notifications(note).last
+    = link_to notification_path(notification_id: notification.id, unread_comment_id: current_user.oldest_comment(note).id, note_id: notification.note.id), class: 'top-unread-comment', target: '_blank' do
+      = note.title
 
-  i.far.fa-comment.ml10.mr5
-  span = "#{ note.comments.size }"
+    i.far.fa-comment.ml10.mr5
+    span = "#{ note.comments.size }"
+    i.fas.fa-exclamation-circle
+  - else
+    = link_to note.title, note_path(note), target: '_blank'
+
+    i.far.fa-comment.ml10.mr5
+    span = "#{ note.comments.size }"
