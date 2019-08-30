@@ -8,4 +8,9 @@ $(function() {
     $('#favorite_note_flag').val(this.checked);
     $('#note_search_submit').click();
   });
+
+  $('.tag').click(function() {
+    $('#tag_name').val($(this).next().val());
+    $('#note_search_submit').click();
+  });
 });

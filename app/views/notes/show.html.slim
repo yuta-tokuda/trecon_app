@@ -19,6 +19,9 @@ div.editor-info
   span.edit-time
       = l @note.created_at
 
+div.tag-list
+  = render 'notes/tag_list', tag_list: @note.tag_list
+
 div.note-content-markdown.mb20
   div.content
     = markdown(@note.content)
