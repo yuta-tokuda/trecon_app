@@ -7,6 +7,7 @@ class NotesController < ApplicationController
 
   def new
     @note = Note.new
+    gon.all_tag_list = ActsAsTaggableOn::Tag.all.pluck(:name)
   end
 
   def create
@@ -20,6 +21,7 @@ class NotesController < ApplicationController
 
   def edit
     @note = Note.find(params[:id])
+    gon.all_tag_list = ActsAsTaggableOn::Tag.all.pluck(:name)
     only_current_user
   end
 
@@ -79,7 +81,7 @@ class NotesController < ApplicationController
   private
 
   def permit_params
-    params.require(:note).permit(:title, :content, :public_flag)
+    params.require(:note).permit(:title, :content, :public_flag, :tag_list)
   end
 
   def only_current_user
@@ -98,9 +100,10 @@ class NotesController < ApplicationController
 
   def search_result
     notes = Note.current_viewable_notes(current_user.id)
-                .includes(:user)
+                .includes(:user, :taggings)
     notes = notes.my_notes(current_user.id) if ActiveRecord::Type::Boolean.new.cast(params[:my_note_flag])
     notes = notes.where(id: current_user.favorite_notes.map(&:note_id)) if ActiveRecord::Type::Boolean.new.cast(params[:favorite_note_flag])
+    notes = notes.tagged_with("#{ params[:tag_name] }") if params[:tag_name].present?
     @query = notes.ransack(params[:q])
     ret = @query.result.order(created_at: :DESC)
     ret
@@ -108,5 +111,9 @@ class NotesController < ApplicationController
 
   def comments
     @comments ||= @note.comments.includes(:reply_user).order(:id)
+  end
+
+  def note_params
+    params.require(:note).permit(:tag_list)
   end
 end

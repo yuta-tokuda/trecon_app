@@ -48,3 +48,9 @@ gem 'thin'
 gem 'ransack'
 
 gem 'bullet', group: :development
+
+gem 'acts-as-taggable-on', '~> 6.0'
+
+gem 'jquery-ui-rails'
+
+gem 'gon'

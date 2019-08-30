@@ -17,7 +17,10 @@ div.editor-info
     i.fas.fa-user-edit
     = @note.user.full_name
   span.edit-time
-      = @note.created_at.strftime('%Y/%m/%d')
+    = @note.created_at.strftime('%Y/%m/%d')
+
+div.tag-list
+  = render 'notes/tag_list', tag_list: @note.tag_list
 
 div.note-content-markdown.mb20
   div.content

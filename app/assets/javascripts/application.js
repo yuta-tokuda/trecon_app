@@ -16,3 +16,6 @@
 //= require common
 //= require lazybox
 //= require toc.min
+//= require jquery-ui
+//= require jquery-ui/widgets/autocomplete
+//= require tag-it

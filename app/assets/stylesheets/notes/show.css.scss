@@ -69,6 +69,20 @@ div.editor-info {
   }
 }
 
+div.tag-list {
+  display: inline-block;
+  margin-left: 10px;
+
+  .tag {
+    display: inline-block;
+    margin-left: 4px;
+    &:hover {
+      text-decoration: none;
+      color : #ffb6c1;
+    }
+  }
+}
+
 #toc {
   top: 200px;
   left: 1200px;
@@ -116,4 +130,9 @@ div.editor-info {
   }
 
   body { margin-left:0; }
+}
+
+// JQueryのオートコンプリート用ヘルプメッセージの非表示
+.ui-helper-hidden-accessible {
+  display: none;
 }

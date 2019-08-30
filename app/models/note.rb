@@ -21,6 +21,8 @@ class Note < ApplicationRecord
 
   scope :my_notes, ->(user_id) { where(created_by_user_id: user_id) }
 
+  acts_as_taggable
+
   def favorite_note?(user_id)
     User.find(user_id).favorite_notes.find_by(note_id: id).present?
   end
