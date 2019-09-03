@@ -26,6 +26,8 @@ class User < ApplicationRecord
   validates :name_first, presence: true
   validates :name_last, presence: true
 
+  has_one :request_token, dependent: :destroy
+
   has_many :notes, dependent: :destroy, inverse_of: :notes
   has_many :favorite_notes, dependent: :destroy
   has_many :comments, dependent: :destroy, class_name: 'UserNoteComment'
