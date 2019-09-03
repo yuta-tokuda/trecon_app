@@ -22,5 +22,9 @@
                   = render 'update_info_for_note_comment', comment: i, note: i.note
                 - else
 
+      .center.pt10#page
+        = paginate @update_info
+
+
     // 後で何か実装
     // .right-content

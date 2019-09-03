@@ -5,4 +5,4 @@ $(function() {
     $('.edit-comment-' + id).toggle();
     $('.edit-comment-' + id).children('textarea').val($(`.comment-${ id } > p`).text());
   })
-});
+})
