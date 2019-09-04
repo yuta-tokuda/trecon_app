@@ -5,7 +5,7 @@
       p.recent-updates 最近の更新(ノート/コメント)
 
       - @update_info.each do |date, info|
-        tr
+        tr.set_page
           .update-date
             .date
               span.mr5 = l date, format: :long
@@ -22,8 +22,10 @@
                   = render 'update_info_for_note_comment', comment: i, note: i.note
                 - else
 
-      .center.pt10#page
+      .center.pt10.page
         = paginate @update_info
+
+= javascript_include_tag 'top/index'
 
 
     // 後で何か実装
