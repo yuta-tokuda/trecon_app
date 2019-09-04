@@ -8,7 +8,7 @@
         tr
           .update-date
             .date
-              span.mr5 = date.strftime('%Y年%m月%d日')
+              span.mr5 = l date, format: :long
               span = "(#{ info.size }件)"
 
           - info.reverse { |model| model.updated_at }.each do |i|

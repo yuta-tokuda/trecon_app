@@ -23,6 +23,16 @@ table.note-list {
     color: #848484;
   }
 
+  .unread-info {
+    top: -37px;
+    left: -65px;
+    width: 160px;
+    &:after {
+      bottom: -8px;
+      left: -5px;
+    }
+  }
+
   .title { width: 700px; }
   .tag-list {
     max-width: 300px;

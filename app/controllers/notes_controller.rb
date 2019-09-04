@@ -14,6 +14,7 @@ class NotesController < ApplicationController
     @note = Note.new(permit_params.merge(created_by_user_id: current_user.id))
     @note.save!
     flash[:notice] = 'ノートを登録しました。'
+    create_note_notification if @note.public_flag
     redirect_to action: :show, id: @note.id
   rescue ActiveRecord::RecordInvalid
     render :new
@@ -29,6 +30,7 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
     @note.update!(permit_params)
     flash[:notice] = 'ノートを更新しました。'
+    create_note_notification if @note.public_flag_change?
     redirect_to action: :show, id: @note.id
   rescue ActiveRecord::RecordInvalid
     render :edit
@@ -48,6 +50,7 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
     @comment = comments.build
     comments
+    destroy_note_notification
     viewable_not_authorized
   end
 
@@ -103,7 +106,7 @@ class NotesController < ApplicationController
                 .includes(:user, :taggings)
     notes = notes.my_notes(current_user.id) if ActiveRecord::Type::Boolean.new.cast(params[:my_note_flag])
     notes = notes.where(id: current_user.favorite_notes.map(&:note_id)) if ActiveRecord::Type::Boolean.new.cast(params[:favorite_note_flag])
-    notes = notes.tagged_with("#{ params[:tag_name] }") if params[:tag_name].present?
+    notes = notes.tagged_with(params[:tag_name].to_s) if params[:tag_name].present?
     @query = notes.ransack(params[:q])
     ret = @query.result.order(created_at: :DESC)
     ret
@@ -115,5 +118,17 @@ class NotesController < ApplicationController
 
   def note_params
     params.require(:note).permit(:tag_list)
+  end
+
+  def create_note_notification
+    user_ids = User.other_user_ids(current_user.id)
+    user_ids.each do |user_id|
+      @note.notifications.create(active_user_id: current_user.id, passive_user_id: user_id, kind: 'note')
+    end
+  end
+
+  def destroy_note_notification
+    note_notification = current_user.passive_notifications.find_by(note_id: @note.id, kind: 'note')
+    note_notification&.destroy
   end
 end

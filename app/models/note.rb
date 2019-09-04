@@ -15,6 +15,7 @@ class Note < ApplicationRecord
   belongs_to :user, foreign_key: 'created_by_user_id', inverse_of: :notes
 
   has_many :comments, dependent: :destroy, class_name: 'UserNoteComment'
+  has_many :notifications, dependent: :destroy
 
   validates :title, presence: true
   validates :content, presence: true
@@ -34,5 +35,13 @@ class Note < ApplicationRecord
   def self.current_viewable_notes(user_id)
     non_viewable_note_ids = Note.where.not(created_by_user_id: user_id).where(public_flag: false).ids
     non_viewable_note_ids.empty? ? Note.all : Note.where.not(id: non_viewable_note_ids)
+  end
+
+  def created_user?(user_id)
+    created_by_user_id == user_id
+  end
+
+  def public_flag_change?
+    public_flag_previous_change.present? && public_flag_previous_change[0] == false && public_flag_previous_change[1] == true
   end
 end
