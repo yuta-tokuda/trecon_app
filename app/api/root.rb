@@ -8,8 +8,7 @@ class Root < Grape::API
   prefix 'api'
   format :json
 
-  mount Authenticate
-  mount Users
+  mount V1::Root
   add_swagger_documentation(
     info: {
       title: 'TRECON_APP_API',

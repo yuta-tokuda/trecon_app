@@ -55,7 +55,6 @@ gem 'jquery-ui-rails'
 
 gem 'gon'
 
-
 #API作成用
 gem 'grape'
 gem 'grape-active_model_serializers'
