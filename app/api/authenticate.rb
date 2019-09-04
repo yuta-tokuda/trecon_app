@@ -10,7 +10,7 @@ class Authenticate < Grape::API
       request_token = user.create_request_token
       present token: request_token.token
     else
-      present error: 'メールアドレスもしくはパスワードが違います。'
+      error!(I18n.t('api.errors.authentication'), 401)
     end
   end
 end
