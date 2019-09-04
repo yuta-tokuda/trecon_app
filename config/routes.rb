@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount API::Root => '/'
+  mount Root => '/'
   mount GrapeSwaggerRails::Engine => '/docs'
   devise_for :users
   root to: 'top#index'
