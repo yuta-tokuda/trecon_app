@@ -54,3 +54,13 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'jquery-ui-rails'
 
 gem 'gon'
+
+#API作成用
+gem 'grape'
+gem 'grape-active_model_serializers'
+gem 'grape-entity'
+gem 'grape_logging'
+gem 'grape-swagger', group: :development
+gem 'grape-swagger-entity', group: :development
+gem 'grape-swagger-rails', group: :development
+gem 'devise_token_auth'
