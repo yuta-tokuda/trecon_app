@@ -7,7 +7,7 @@ module V1
       included do
         helpers do
           def authenticate!
-            error!(I18n.t('api.errors.unauthorized'), 401) unless current_user
+            error!(I18n.t('api.errors.log_in_again'), 401) unless current_user
           end
 
           def current_user
