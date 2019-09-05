@@ -4,26 +4,27 @@
     .left-content
       p.recent-updates 最近の更新(ノート/コメント)
 
-      - @update_info.each do |date, info|
-        tr.set_page
-          .update-date
-            .date
-              span.mr5 = l date, format: :long
-              span = "(#{ info.size }件)"
+      #set_page
+        - @update_info.each do |date, info|
+          tr
+            .update-date
+              .date
+                span.mr5 = l date, format: :long
+                span = "(#{ info.size }件)"
 
-          - info.reverse { |model| model.updated_at }.each do |i|
-            tr
-              .update-info.mb5
-                // ノート・コメント以外も表示することも考慮してcase使用
-                - case i.class.name
-                - when 'Note'
-                  = render 'update_info_for_note', note: i
-                - when 'UserNoteComment'
-                  = render 'update_info_for_note_comment', comment: i, note: i.note
-                - else
+            - info.reverse { |model| model.updated_at }.each do |i|
+              tr
+                .update-info.mb5
+                  // ノート・コメント以外も表示することも考慮してcase使用
+                  - case i.class.name
+                  - when 'Note'
+                    = render 'update_info_for_note', note: i
+                  - when 'UserNoteComment'
+                    = render 'update_info_for_note_comment', comment: i, note: i.note
+                  - else
 
-      .center.pt10.page
-        = paginate @update_info
+    .center.pt10.page.hidden
+      = paginate @update_info
 
 = javascript_include_tag 'top/index'
 
