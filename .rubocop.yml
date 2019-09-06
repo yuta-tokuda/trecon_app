@@ -29,6 +29,10 @@ Metrics/LineLength:
 Metrics/AbcSize:
   Enabled: false
 
+Metrics/BlockLength:
+  Exclude:
+    - 'app/api/v1/notes.rb'
+
 Style/AccessModifierIndentation:
   Enabled: false
 

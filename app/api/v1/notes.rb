@@ -21,7 +21,7 @@ module V1
     end
 
     resources :notes do
-      desc 'POST /api/notes/new'
+      desc 'POST /api/v1/notes/new'
       params do
         use :authentication
         use :note
@@ -30,6 +30,26 @@ module V1
       post '/new' do
         note = Note.new(note_permit_params.merge(created_by_user_id: current_user.id))
         note.save!
+        present note: note
+      end
+
+      desc 'GET /api/v1/notes/:id'
+      params { use :authentication }
+
+      get '/:id' do
+        note = Note.find(params[:id])
+        present note: note
+      end
+
+      desc 'PATCH /api/v1/notes/:id/edit'
+      params do
+        use :authentication
+        use :note
+      end
+
+      patch '/:id/edit' do
+        note = Note.find(params[:id])
+        note.update!(note_permit_params)
         present note: note
       end
     end
