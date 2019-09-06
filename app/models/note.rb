@@ -48,11 +48,11 @@ class Note < ApplicationRecord
   end
 
   def create_note_notification
-    if public_flag || public_flag_change?
-      user_ids = User.other_user_ids(created_by_user_id)
-      user_ids.each do |user_id|
-        notifications.create(active_user_id: created_by_user_id, passive_user_id: user_id, kind: 'note')
-      end
+    return unless public_flag || public_flag_change?
+
+    user_ids = User.other_user_ids(created_by_user_id)
+    user_ids.each do |user_id|
+      notifications.create(active_user_id: created_by_user_id, passive_user_id: user_id, kind: 'note')
     end
   end
 end

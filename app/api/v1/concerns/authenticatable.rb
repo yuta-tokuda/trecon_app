@@ -7,7 +7,7 @@ module V1
       included do
         helpers do
           params :authentication do
-            requires :uid,   type: String
+            requires :uid, type: String
             requires :user_token, type: String
           end
 
