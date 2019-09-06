@@ -1,7 +1,5 @@
 module V1
   class Root < Grape::API
-    include Concerns::Authenticatable
-
     version 'v1'
 
     rescue_from ActiveRecord::RecordNotFound do
@@ -17,7 +15,7 @@ module V1
     end
 
     mount V1::Authenticate
-    mount V1::Users
     mount V1::Notes
+    mount V1::Users
   end
 end

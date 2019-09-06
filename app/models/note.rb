@@ -12,6 +12,8 @@
 #
 
 class Note < ApplicationRecord
+  after_save :create_note_notification
+
   belongs_to :user, foreign_key: 'created_by_user_id', inverse_of: :notes
 
   has_many :comments, dependent: :destroy, class_name: 'UserNoteComment'
@@ -43,5 +45,14 @@ class Note < ApplicationRecord
 
   def public_flag_change?
     public_flag_previous_change.present? && public_flag_previous_change[0] == false && public_flag_previous_change[1] == true
+  end
+
+  def create_note_notification
+    if public_flag || public_flag_change?
+      user_ids = User.other_user_ids(created_by_user_id)
+      user_ids.each do |user_id|
+        notifications.create(active_user_id: created_by_user_id, passive_user_id: user_id, kind: 'note')
+      end
+    end
   end
 end

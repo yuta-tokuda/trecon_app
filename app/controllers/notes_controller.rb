@@ -14,7 +14,6 @@ class NotesController < ApplicationController
     @note = Note.new(permit_params.merge(created_by_user_id: current_user.id))
     @note.save!
     flash[:notice] = 'ノートを登録しました。'
-    create_note_notification if @note.public_flag
     redirect_to action: :show, id: @note.id
   rescue ActiveRecord::RecordInvalid
     render :new
@@ -30,7 +29,6 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
     @note.update!(permit_params)
     flash[:notice] = 'ノートを更新しました。'
-    create_note_notification if @note.public_flag_change?
     redirect_to action: :show, id: @note.id
   rescue ActiveRecord::RecordInvalid
     render :edit
@@ -118,13 +116,6 @@ class NotesController < ApplicationController
 
   def note_params
     params.require(:note).permit(:tag_list)
-  end
-
-  def create_note_notification
-    user_ids = User.other_user_ids(current_user.id)
-    user_ids.each do |user_id|
-      @note.notifications.create(active_user_id: current_user.id, passive_user_id: user_id, kind: 'note')
-    end
   end
 
   def destroy_note_notification
