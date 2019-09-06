@@ -231,4 +231,6 @@ ja:
   api:
     errors:
       authentication: メールアドレスもしくはパスワードが違います
-      unauthorized: 再度ログインしてください。
+      log_in_again: 再度ログインしてください。
+    notes:
+      created: ノートを作成しました。
