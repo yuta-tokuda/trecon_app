@@ -2,7 +2,7 @@
   - type = note.created_at == note.updated_at ? '投稿' : '更新'
 
   i.fas.fa-user-edit.mr3
-  span = "#{ note.user.full_name }さんが"
+  span = "#{ note.created_by_user.full_name }さんが"
   span.font-bold = "ノートを#{ type }"
 
   span.float-right = date_diff_str(note.updated_at)

@@ -51,7 +51,7 @@ table.note-list
         td.tag-list
           = render 'notes/tag_list', tag_list: note.tag_list
         td.user-name
-          = note.user.full_name
+          = note.created_by_user.full_name
         td.created-at
           = l note.created_at
 
