@@ -33,24 +33,31 @@ module V1
         present note: note
       end
 
-      desc 'GET /api/v1/notes/:id'
-      params { use :authentication }
+      route_param :id, type: Integer do
+        desc 'GET /api/v1/notes/:id'
+        params { use :authentication }
 
-      get '/:id' do
-        note = Note.find(params[:id])
-        present note: note
-      end
+        get '/' do
+          note = Note.find(params[:id])
+          present note: note
+        end
 
-      desc 'PATCH /api/v1/notes/:id/edit'
-      params do
-        use :authentication
-        use :note
-      end
+        desc 'PATCH /api/v1/notes/:id'
+        route_setting :edit, true
+        params do
+          use :authentication
+          use :note
+        end
 
-      patch '/:id/edit' do
-        note = Note.find(params[:id])
-        note.update!(note_permit_params)
-        present note: note
+        patch '/' do
+          note = Note.find(params[:id])
+          if note.created_by_user_id == current_user.id
+            note.update!(note_permit_params)
+            present note: note
+          else
+            error!(I18n.t('api.notes.only_author_operaiton'), 403)
+          end
+        end
       end
     end
   end
