@@ -234,4 +234,4 @@ ja:
       log_in_again: 再度ログインしてください
     notes:
       created: ノートを作成しました
-      only_author_operaiton: ノート登録者のみ操作可能です
+      unauthorized: 権限がありません

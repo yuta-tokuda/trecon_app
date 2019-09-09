@@ -43,19 +43,18 @@ module V1
         end
 
         desc 'PATCH /api/v1/notes/:id'
-        route_setting :edit, true
         params do
           use :authentication
           use :note
         end
 
         patch '/' do
-          note = Note.find(params[:id])
+          note = current_user.notes.find(params[:id])
           if note.created_by_user_id == current_user.id
             note.update!(note_permit_params)
             present note: note
           else
-            error!(I18n.t('api.notes.only_author_operaiton'), 403)
+            error!(I18n.t('api.notes.unauthorized'), 403)
           end
         end
       end

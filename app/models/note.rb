@@ -14,7 +14,7 @@
 class Note < ApplicationRecord
   after_save :create_note_notification
 
-  belongs_to :user, foreign_key: 'created_by_user_id', inverse_of: :notes
+  belongs_to :created_by_user, class_name: 'User', inverse_of: :notes
 
   has_many :comments, dependent: :destroy, class_name: 'UserNoteComment'
   has_many :notifications, dependent: :destroy

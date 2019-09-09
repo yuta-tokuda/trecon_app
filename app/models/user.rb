@@ -28,7 +28,7 @@ class User < ApplicationRecord
 
   has_one :request_token, dependent: :destroy
 
-  has_many :notes, dependent: :destroy, inverse_of: :notes
+  has_many :notes, foreign_key: 'created_by_user', dependent: :destroy, inverse_of: :created_by_user
   has_many :favorite_notes, dependent: :destroy
   has_many :comments, dependent: :destroy, class_name: 'UserNoteComment'
   has_many :editors, class_name: 'UserNoteComment', foreign_key: 'editor_id', inverse_of: :editors, dependent: :destroy
