@@ -2,7 +2,7 @@ class TopController < ApplicationController
   def index
     return unless user_signed_in?
 
-    info = viewable_notes.includes(:user, :comments)
+    info = viewable_notes.includes(:created_by_user, :comments)
                          .group_by { |n| n.updated_at.to_date }
 
     note_comments = viewable_notes.includes(comments: [:reply_user])

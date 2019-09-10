@@ -15,7 +15,7 @@ div.comment-count
 div.editor-info
   span.editor-name
     i.fas.fa-user-edit
-    = @note.user.full_name
+    = @note.created_by_user.full_name
   span.edit-time
       = l @note.created_at
 
@@ -25,7 +25,7 @@ div.tag-list
 div.note-content-markdown.mb20
   div.content
     = markdown(@note.content)
-    - if current_user == @note.user
+    - if current_user == @note.created_by_user
       = link_to t('view.edit'), edit_note_url(@note), class: 'btn btn-info float-right'
 
 div.comments

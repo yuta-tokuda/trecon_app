@@ -86,7 +86,7 @@ class NotesController < ApplicationController
   end
 
   def only_current_user
-    return if current_user == @note.user
+    return if current_user == @note.created_by_user
 
     flash[:error] = '編集は登録者のみ可能です。'
     redirect_to action: :show, id: @note.id
@@ -101,7 +101,7 @@ class NotesController < ApplicationController
 
   def search_result
     notes = Note.current_viewable_notes(current_user.id)
-                .includes(:user, :taggings)
+                .includes(:created_by_user, :taggings)
     notes = notes.my_notes(current_user.id) if ActiveRecord::Type::Boolean.new.cast(params[:my_note_flag])
     notes = notes.where(id: current_user.favorite_notes.map(&:note_id)) if ActiveRecord::Type::Boolean.new.cast(params[:favorite_note_flag])
     notes = notes.tagged_with(params[:tag_name].to_s) if params[:tag_name].present?
