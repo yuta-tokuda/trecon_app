@@ -1,16 +1,11 @@
 module V1
   class Users < Grape::API
-    include Concerns::Authenticatable
     before { authenticate! }
 
     resources :users do
-      desc 'GET /api/users'
-      params do
-        use :authentication
-      end
-
+      desc 'GET /api/users', headers: Concerns::Authenticatable.headers
       get '/' do
-        render User.all
+        present users: User.all
       end
     end
   end

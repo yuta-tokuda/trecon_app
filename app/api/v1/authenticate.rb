@@ -5,6 +5,7 @@ module V1
       requires :password,      type: String
     end
 
+    desc 'POST /api/v1/sign_in'
     post '/sign_in' do
       user = User.find_by(email: params[:email])
       if user&.valid_password?(params[:password])

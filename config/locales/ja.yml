@@ -234,4 +234,5 @@ ja:
       log_in_again: 再度ログインしてください
     notes:
       created: ノートを作成しました
+      deleted: ノートを削除しました
       unauthorized: 権限がありません

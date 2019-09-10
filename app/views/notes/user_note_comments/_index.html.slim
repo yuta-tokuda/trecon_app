@@ -1,5 +1,5 @@
 div.comment-container id="comment-#{ comment.id }"
-  div class="#{ note.user.comment_reply_user?(comment) ? 'editor-comment' : 'reply-user-comment' }"
+  div class="#{ note.created_by_user.comment_reply_user?(comment) ? 'editor-comment' : 'reply-user-comment' }"
     div.comment-header
       div.user-info
         i.far.fa-user
