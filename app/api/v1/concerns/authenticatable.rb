@@ -11,15 +11,11 @@ module V1
           end
 
           def current_user
-            user = User.find_by(email: request.headers['Uid'])
-            if Rails.env.development? || Rails.env.test?
-              RequestToken.find_by(token: session[:access_token_test])&.user
-            elsif user&.request_token&.token == request.headers['User-Token']
-              user
-            end
+            request.headers['User-Token'] = test_session[:access_token_test] if !Rails.env.production? && test_session[:access_token_test].present?
+            RequestToken.find_by(token: request.headers['User-Token'])&.user
           end
 
-          def session
+          def test_session
             env['rack.session']
           end
         end
