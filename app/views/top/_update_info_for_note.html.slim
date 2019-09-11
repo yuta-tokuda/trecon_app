@@ -8,8 +8,11 @@
   span.float-right = date_diff_str(note.updated_at)
 
 .lower-row
-  - if notification = current_user.note_notification(note).last
+  - if notification = current_user.note_notifications(note).last
     = link_to notification_path(notification_id: notification, note_id: note.id), class: 'top-unread-note', target: '_blank' do
       = note.title
 
     i.fas.fa-info-circle.created.update-top
+
+  - else
+    = link_to note.title, note_path(note), target: '_blank'

@@ -17,6 +17,8 @@ $(function() {
       $(this).children('.unread-info').remove();
     })
   }
+
+  // ノートの既読機能
   if ($('.unread-note').length || $('.top-unread-note').length) {
     $('.created').mouseover(function() {
       $(this).prepend('<div class="unread-info">新しい未読のノートです。</div>');
