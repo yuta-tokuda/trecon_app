@@ -20,7 +20,7 @@ module V1
     end
 
     resources :notes do
-      desc 'POST /api/v1/notes/new', headers: Concerns::Authenticatable.headers
+      desc 'POST /api/v1/notes/new'
       params do
         use :note
       end
@@ -32,14 +32,14 @@ module V1
       end
 
       route_param :id, type: Integer do
-        desc 'GET /api/v1/notes/:id', headers: Concerns::Authenticatable.headers
+        desc 'GET /api/v1/notes/:id'
 
         get '/' do
           note = Note.find(params[:id])
           present note: note
         end
 
-        desc 'PATCH /api/v1/notes/:id', headers: Concerns::Authenticatable.headers
+        desc 'PATCH /api/v1/notes/:id'
         params do
           use :note
         end
@@ -54,7 +54,7 @@ module V1
           end
         end
 
-        desc 'DELETE /api/v1/notes/:id', headers: Concerns::Authenticatable.headers
+        desc 'DELETE /api/v1/notes/:id'
         delete '/' do
           note = current_user.notes.find(params[:id])
           if note.created_by_user_id == current_user.id

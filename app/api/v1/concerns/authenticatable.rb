@@ -4,19 +4,6 @@ module V1
       extend ActiveSupport::Concern
       extend Grape::API::Helpers
 
-      def self.headers
-        {
-          uid: {
-            description: '',
-            required: true
-          },
-          user_token: {
-            description: '',
-            required: true
-          }
-        }
-      end
-
       included do
         helpers do
           def authenticate!
@@ -25,7 +12,15 @@ module V1
 
           def current_user
             user = User.find_by(email: request.headers['Uid'])
-            user if user&.request_token&.token == request.headers['User-Token']
+            if Rails.env.development? || Rails.env.test?
+              RequestToken.find_by(token: session[:access_token_test])&.user
+            elsif user&.request_token&.token == request.headers['User-Token']
+              user
+            end
+          end
+
+          def session
+            env['rack.session']
           end
         end
       end

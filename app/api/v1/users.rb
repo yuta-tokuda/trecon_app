@@ -3,7 +3,7 @@ module V1
     before { authenticate! }
 
     resources :users do
-      desc 'GET /api/users', headers: Concerns::Authenticatable.headers
+      desc 'GET /api/users'
       get '/' do
         present users: User.all
       end

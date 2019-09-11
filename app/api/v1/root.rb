@@ -16,6 +16,7 @@ module V1
     end
 
     mount V1::Authenticate
+    mount V1::AuthenticationForTests
     mount V1::Notes
     mount V1::Users
   end
