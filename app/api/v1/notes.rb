@@ -1,6 +1,5 @@
 module V1
   class Notes < Grape::API
-    include Concerns::Authenticatable
     before { authenticate! }
 
     helpers do
@@ -23,7 +22,6 @@ module V1
     resources :notes do
       desc 'POST /api/v1/notes/new'
       params do
-        use :authentication
         use :note
       end
 
@@ -35,7 +33,6 @@ module V1
 
       route_param :id, type: Integer do
         desc 'GET /api/v1/notes/:id'
-        params { use :authentication }
 
         get '/' do
           note = Note.find(params[:id])
@@ -44,7 +41,6 @@ module V1
 
         desc 'PATCH /api/v1/notes/:id'
         params do
-          use :authentication
           use :note
         end
 
@@ -53,6 +49,17 @@ module V1
           if note.created_by_user_id == current_user.id
             note.update!(note_permit_params)
             present note: note
+          else
+            error!(I18n.t('api.notes.unauthorized'), 403)
+          end
+        end
+
+        desc 'DELETE /api/v1/notes/:id'
+        delete '/' do
+          note = current_user.notes.find(params[:id])
+          if note.created_by_user_id == current_user.id
+            note.destroy!
+            present message: I18n.t('api.notes.deleted')
           else
             error!(I18n.t('api.notes.unauthorized'), 403)
           end

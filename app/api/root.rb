@@ -2,6 +2,8 @@ require 'grape_logging'
 require 'grape-swagger'
 
 class Root < Grape::API
+  include GrapeSession::Ext::API unless Rails.env.production?
+
   logger.formatter = GrapeLogging::Formatters::Json.new
   use GrapeLogging::Middleware::RequestLogger
 

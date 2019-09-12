@@ -6,20 +6,13 @@ module V1
 
       included do
         helpers do
-          # TODO: ノート削除APIではこれをなくす。
-          params :authentication do
-            requires :uid, type: String
-            requires :user_token, type: String
-          end
-
           def authenticate!
             error!(I18n.t('api.errors.log_in_again'), 401) unless current_user
           end
 
           def current_user
-            # 本来ヘッダの情報から取得するので注意。
-            user = User.find_by(email: params[:uid])
-            user if user&.request_token&.token == params[:user_token]
+            request.headers['User-Token'] = session[:access_token_test] if !Rails.env.production? && session[:access_token_test].present?
+            @current_user ||= RequestToken.find_by(token: request.headers['User-Token'])&.user
           end
         end
       end
