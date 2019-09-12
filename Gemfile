@@ -63,4 +63,4 @@ gem 'grape_logging'
 gem 'grape-swagger', group: :development
 gem 'grape-swagger-entity', group: :development
 gem 'grape-swagger-rails', group: :development
-gem 'devise_token_auth'
+gem 'grape_session', group: :development
