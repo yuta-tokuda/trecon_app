@@ -10,6 +10,15 @@ module V1
         optional :tag_list,       type: String
       end
 
+      params :search_note do
+        optional :title,              type: String
+        optional :content,            type: String
+        optional :tag_name,           type: String
+        optional :created_by_user_id, type: Integer
+        optional :my_note_flag,       type: Boolean
+        optional :favorite_note_flag, type: Boolean
+      end
+
       def note_permit_params
         ActionController::Parameters.new(params).permit(:title, :content, :public_flag, :tag_list)
       end
@@ -20,6 +29,23 @@ module V1
     end
 
     resources :notes do
+      desc 'GET /api/v1/notes'
+      params do
+        use :search_note
+      end
+
+      get '/' do
+        notes = Note.current_viewable_notes(current_user.id).includes(:taggings, :created_by_user)
+        notes = notes.my_notes(current_user.id) if params[:my_note_flag]
+        notes = notes.where(id: current_user.favorite_notes.map(&:note_id)) if params[:favorite_note_flag]
+        notes = notes.where(created_by_user_id: params[:created_by_user_id]) if params[:created_by_user_id].present?
+        notes = notes.tagged_with(params[:tag_name].to_s) if params[:tag_name].present?
+        notes = notes.where(['title LIKE ?', "%#{ params[:title] }%"]) if params[:title].present?
+        notes = notes.where(['content LIKE ?', "%#{ params[:content] }%"]) if params[:content].present?
+
+        present notes, with: Entities::NoteEntity, current_user: current_user
+      end
+
       desc 'POST /api/v1/notes/new'
       params do
         use :note
@@ -36,7 +62,7 @@ module V1
 
         get '/' do
           note = Note.find(params[:id])
-          present note: note
+          present note, with: Entities::NoteEntity, current_user: current_user
         end
 
         desc 'PATCH /api/v1/notes/:id'
