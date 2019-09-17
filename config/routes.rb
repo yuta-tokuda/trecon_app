@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount Root => '/'
-  mount GrapeSwaggerRails::Engine => '/docs'
+  mount GrapeSwaggerRails::Engine => '/docs' if defined? GrapeSwaggerRails
   devise_for :users
   root to: 'top#index'
   get 'common/preview', to: 'common#preview'
