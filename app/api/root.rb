@@ -1,8 +1,8 @@
-require 'grape_logging' unless Rails.env.production?
-require 'grape-swagger' unless Rails.env.production?
+require 'grape_logging' if Rails.env.development?
+require 'grape-swagger' if Rails.env.development?
 
 class Root < Grape::API
-  include GrapeSession::Ext::API unless Rails.env.production?
+  include GrapeSession::Ext::API if Rails.env.development?
 
   logger.formatter = GrapeLogging::Formatters::Json.new
   use GrapeLogging::Middleware::RequestLogger
