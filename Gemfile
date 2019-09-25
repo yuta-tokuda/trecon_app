@@ -61,6 +61,21 @@ gem 'grape-active_model_serializers'
 gem 'grape-entity'
 gem 'grape_logging'
 gem 'grape-swagger', group: :development
-gem 'grape-swagger-entity', group: :development
 gem 'grape-swagger-rails', group: :development
+gem 'grape-swagger-entity', group: :development
 gem 'grape_session', group: :development
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'faker-japanese'
+end
+
+group :test do
+  gem 'puma'
+  gem 'capybara'
+  gem 'database_rewinder'
+  gem 'launchy'
+  gem 'webdrivers'
+end

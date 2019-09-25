@@ -1,4 +1,4 @@
-unless Rails.env.production?
+if defined? GrapeSwaggerRails
   GrapeSwaggerRails.options.app_name = 'TRECON_APP'
   GrapeSwaggerRails.options.url = '/api/swagger_doc.json'
 
