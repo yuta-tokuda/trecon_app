@@ -1,9 +1,17 @@
 $(function() {
-  $('.preview-btn').click(function() {
+  $('.content-form').on('keydown keyup keypress change', function() {
     $.ajax({
-      url: '/common/preview',
+      url: '/common/realtime_preview',
       format: 'js',
-      data: { content: $('#markdown_content').val() }
+      data: { content: $('#markdown-content').val() }
+    });
+  });
+
+  $('.note-description_button').on('click', function(e){
+    e.preventDefault();
+    $('#overlay, #window').fadeIn('slow');
+    $('#overlay, .close').on('click', function(){
+        $('#overlay, #window').fadeOut('slow');
     });
   });
 });

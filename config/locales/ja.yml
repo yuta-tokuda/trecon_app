@@ -166,6 +166,7 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+    about_markdown: markdown記法について
     comments_placeholder: コメントを入力してください
     no_notifications: 通知はありません。
     new_comment_notify: さんがコメントしました。

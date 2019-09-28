@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'top#index'
   get 'common/preview', to: 'common#preview'
+  get 'common/realtime_preview', to: 'common#realtime_preview'
   get 'user_note_comments/create_comment', to: 'user_note_comments#create_comment'
   get 'user_note_comments/update_comment', to: 'user_note_comments#update_comment'
   get 'user_note_comments/destroy_comment', to: 'user_note_comments#destroy_comment'
