@@ -1,44 +1,38 @@
 - url = @note.new_record? ? create_new_notes_url : note_url
 - submit_name = @note.new_record? ? t('view.new') : t('view.update')
 
-div.float-left
-  = form_with model: @note, url: url do |f|
-   div.float-left
-    table.note-form
-      tr
-        th
-          .float-left = t('activerecord.attributes.note.public_flag')
-          = render 'common/form_required_view'
-        td
-          .float-left.mr10 = f.check_box :public_flag, id: 'note_public_flag'
-          label.non-margin.float-left for='note_public_flag' 公開する
-      tr
-        th
-          .float-left = t('activerecord.attributes.note.title')
-          = render 'common/form_required_view'
-        td = f.text_field :title, class: 'title-form'
-      tr
-        th
-          .float-left = t('activerecord.attributes.note.tag')
-        td = f.text_field :tag_list, class: 'title-form', id: 'note-tags', value: @note.send(:tag_list).to_s
+= form_with model: @note, url: url do |f|
+  table.note-form
+    tr
+      th
+        .float-left = t('activerecord.attributes.note.public_flag')
+        = render 'common/form_required_view'
+      td
+        .float-left.mr10 = f.check_box :public_flag, id: 'note_public_flag'
+        label.non-margin.float-left for='note_public_flag' 公開する
+    tr
+      th
+        .float-left = t('activerecord.attributes.note.title')
+        = render 'common/form_required_view'
+      td = f.text_field :title, class: 'title-form'
+    tr
+      th
+        .float-left = t('activerecord.attributes.note.tag')
+      td = f.text_field :tag_list, class: 'title-form', id: 'note-tags', value: @note.send(:tag_list).to_s
+    tr
+      th
+        = t('activerecord.attributes.note.content')
+        = render 'common/form_required_view'
+      td.content-container
+        = f.text_area :content, class: 'content-form syncscroll', id: 'markdown-content', name: 'note[content]'
+        div#preview-area.syncscroll name='note[content]'
+          - unless @note.new_record?
+            = markdown(@note.content)
 
-      tr
-        th
-          .float-left = t('activerecord.attributes.note.content')
-          = render 'common/form_required_view'
-          br
-          div.preview-btn.mt5 = t('activerecord.markdown_preview')
-        td = f.text_area :content, class: 'content-form', id: 'markdown_content'
-
-    div.float-right
-      = submit_tag submit_name, class: 'btn btn-success mb10 mr5 float-left'
-      - unless @note.new_record?
-        = link_to t('view.destroy'), note_url(@note), class: 'btn btn-danger mb10 float-left', method: :delete, data: { confirm: t('helpers.delete_confirm') }
-
-  // プレビュー表示
-  #preview-div
-
-div.note-description_text
-  = render 'description_text'
+  div.float-right
+    = submit_tag submit_name, class: 'btn btn-success mb10'
+    - unless @note.new_record?
+      = link_to t('view.destroy'), note_url(@note), class: 'btn btn-danger mb10 mr5 float-left', method: :delete, data: { confirm: t('helpers.delete_confirm') }
 
 = javascript_include_tag 'notes/form'
+= javascript_include_tag 'notes/syncscroll'

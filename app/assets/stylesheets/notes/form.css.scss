@@ -1,5 +1,11 @@
+form {
+  padding-right: 20px;
+  margin-bottom: 60px;
+}
+
 table.note-form {
   font-size: 15px;
+  width: 1250px;
   margin-top: 20px;
   margin-bottom: 10px;
 
@@ -17,19 +23,33 @@ table.note-form {
   }
 
   .title-form {
-    width: 500px;
+    width: 100%;
   }
 
-  ul.tagit {
-    width: 500px;
-    margin-bottom: 0px;
-    z-index: 0.5;
+  .content-container {
+    display: flex;
   }
 
   .content-form {
-    width: 500px;
-    height: 400px;
+    width: 549px;
+    height: 500px;
     resize: vertical;
+    margin-right: 8px;
+  }
+
+  #preview-area {
+    overflow-x: scroll;
+    word-break: break-all;
+    width: 549px;
+    height: 500px;
+    padding: 4px;
+    border: 1px solid #A4A4A4;
+  }
+
+  ul.tagit {
+    padding: 4px 4px;
+    margin-bottom: 0px;
+    z-index: 0.5;
   }
 }
 
@@ -39,18 +59,39 @@ div.note-description_text {
   margin-left: 40px;
 }
 
-.preview-btn {
-  display: block;
-  color: #FFFFFF;
-  padding: 6px 10px;
-  font-size: 13px;
-  background-color: #FAAC58;
-  cursor: pointer
+span.note-description_button {
+  font-size: 0.5em;
+  margin-left: 12px;
+  cursor: pointer;
 }
 
-.preview-btn:hover {
-  color: #FFF;
-  text-decoration: none;
-  background: #FF8000;
-  cursor: pointer
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height:100%;
+  z-index: 97;
+  background: #000;
+  opacity: .7;
+}
+
+#window {
+  display: none;
+  position: fixed;
+  overflow: scroll;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 700px;
+  z-index: 98;
+  background: #fff;
+}
+
+#inner {
+  padding: 24px;
+  width: 100%;
+  height: 200px;
 }

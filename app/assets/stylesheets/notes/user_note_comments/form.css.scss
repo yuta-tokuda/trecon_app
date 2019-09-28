@@ -10,9 +10,20 @@ div.comment-form {
     margin-top: 5px;
     margin-left: 5px;
   }
+  
   .preview-btn {
     display: inline-block;
-    color: #FFF;
     float: right;
+    color: #FFF;
+    padding: 6px 10px;
+    font-size: 13px;
+    background-color: #FAAC58;
+    cursor: pointer
+  }
+
+  .preview-btn:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+    background: #FF8000;
   }
 }

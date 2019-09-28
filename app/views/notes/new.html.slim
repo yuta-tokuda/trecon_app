@@ -2,5 +2,14 @@
 
 div.form-title
   span.under_border = "#{ t('view.note') }#{ t('view.new') }"
+  span.note-description_button.btn-sm.btn-secondary
+    = t('helpers.about_markdown')
+
+  div#overlay
+  div#window
+    div#inner
+      div.note-description_text
+        = render 'description_text'
+      i.fas.fa-times.close
 
 = render 'form'
