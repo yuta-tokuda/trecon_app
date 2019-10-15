@@ -14,7 +14,7 @@ class TopController < ApplicationController
       info[comment[0]].present? ? info[comment[0]].push(comment[1][0]) : info.merge(Hash[*comment])
     end
 
-    @update_info = info.sort.reverse
+    @update_info = paging(info.sort.reverse, 2)
   end
 
   private
