@@ -45,7 +45,11 @@ table.note-list
           - if notification = current_user.comment_notifications(note).last
             = link_to notification_path(notification_id: notification, unread_comment_id: current_user.oldest_comment(note).id, note_id: note.id), class: 'unread-comment' do
               = note.title.truncate(65, omission: '...')
-            i.fas.fa-exclamation-circle
+            i.fas.fa-info-circle.comment
+          - elsif notification = current_user.note_notifications(note).last
+            = link_to notification_path(notification_id: notification, note_id: note.id), class: 'unread-note' do
+              = note.title.truncate(65, omission: '...')
+            i.fas.fa-info-circle.created
           - else
             = link_to note.title.truncate(65, omission: '...'), note_url(note)
         td.tag-list
