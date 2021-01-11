@@ -32,7 +32,7 @@ gem 'active_decorator'
 gem 'font-awesome-sass', '~> 5.8.1'
 
 # Markdown用
-gem 'redcarpet', '~> 2.3.0'
+gem 'redcarpet', '~> 3.5.1'
 gem 'coderay'
 
 # ページング
